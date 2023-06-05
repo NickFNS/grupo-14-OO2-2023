@@ -15,13 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "sector")
 public class Sector {
@@ -30,7 +24,7 @@ public class Sector {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSector;
 
-	@Column(name = "nombre", unique = true, nullable = false, length = 45)
+	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sector")

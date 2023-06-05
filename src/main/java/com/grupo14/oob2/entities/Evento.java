@@ -2,26 +2,30 @@ package com.grupo14.oob2.entities;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 
+//import org.hibernate.annotations.CreationTimestamp;
+//import org.hibernate.annotations.UpdateTimestamp;
+//import jakarta.persistence.JoinColumn;
+
+@Entity
+@Table(name = "evento")
 public class Evento {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idEvento;
 
-	@Column(name = "descripcion", nullable = false, length = 45)
+	@Column(name = "descripcion", nullable = false)
 	private String descripcion;
 
-	@Column(name = "enabled")
-	private boolean enabled;
+	@Column(name = "activo")
+	private boolean activo;
 
 //  Un evento puede tener mas de un dispositivo? 
 //	@OneToMany o @OneToOne?
@@ -43,12 +47,52 @@ public class Evento {
 	public Evento() {
 	}
 
-	public Evento(int idEvento, String descripcion, boolean enabled, Dispositivo dispositivo, LocalDateTime fechaHora) {
+	public Evento(int idEvento, String descripcion, boolean activo, Dispositivo dispositivo, LocalDateTime fechaHora) {
 		super();
 		this.idEvento = idEvento;
 		this.descripcion = descripcion;
-		this.enabled = enabled;
+		this.activo = activo;
 		this.dispositivo = dispositivo;
+		this.fechaHora = fechaHora;
+	}
+
+	public int getIdEvento() {
+		return idEvento;
+	}
+
+	protected void setIdEvento(int idEvento) {
+		this.idEvento = idEvento;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public Dispositivo getDispositivo() {
+		return dispositivo;
+	}
+
+	public void setDispositivo(Dispositivo dispositivo) {
+		this.dispositivo = dispositivo;
+	}
+
+	public LocalDateTime getFechaHora() {
+		return fechaHora;
+	}
+
+	public void setFechaHora(LocalDateTime fechaHora) {
 		this.fechaHora = fechaHora;
 	}
 

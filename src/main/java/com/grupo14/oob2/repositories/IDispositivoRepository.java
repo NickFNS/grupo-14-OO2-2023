@@ -13,21 +13,22 @@ import com.grupo14.oob2.entities.Dispositivo;
 @Repository("dispositivoRepository")
 public interface IDispositivoRepository extends JpaRepository<Dispositivo, Serializable> {
 
-	// @Query("SELECT d FROM Dispositivo d JOIN FETCH d.eventos WHERE d.nombre = (:nombre)")
-	// public abstract Dispositivo findByNombreAndFetchEventosEagerly(@Param("nombre") String nombre);
+	// @Query("SELECT d FROM Dispositivo d JOIN FETCH d.eventos WHERE d.nombre =
+	// (:nombre)")
+	// public abstract Dispositivo
+	// findByNombreAndFetchEventosEagerly(@Param("nombre") String nombre);
 
 	@Query("SELECT d FROM Dispositivo d WHERE d.nombre = (:nombre)")
 	public abstract Dispositivo findByNombre(@Param("nombre") String nombre);
 
-	// La implementacion de estos metodos va en services.implementation
-	//* porque traera una lista
+	// * porque traera una lista
 	@Query("SELECT * FROM Dispositivo d WHERE d.tipo = (:tipo)")
 	public abstract List<Dispositivo> findByTipoDesc(String tipo);
 
 	public abstract Dispositivo findByIdDispositivo(int idDispositivo);
 
 	public abstract List<Dispositivo> getAll();
-	
+
 	public abstract boolean removeByIdDispositivo(int idDispositivo);
-	
+
 }

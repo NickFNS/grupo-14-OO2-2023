@@ -1,28 +1,22 @@
 package com.grupo14.oob2.entities;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+//import java.util.HashSet;
+//import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+//import jakarta.persistence.FetchType;
+//import jakarta.persistence.OneToMany;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "dispositivo")
 // Abstract para que hereden cada dispositivo
 public abstract class Dispositivo {
@@ -31,17 +25,17 @@ public abstract class Dispositivo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idDispositivo;
 
-	@Column(name = "nombre", unique = true, nullable = false, length = 45)
+	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@Column(name = "enabled")
-	private boolean enabled;
+	@Column(name = "activo")
+	private boolean activo;
 
 //	No seria lo mismo que enabled?	
 //	@Column(name = "activo")
 //	private boolean activo;
 
-	@Column(name = "tipo", nullable = false, length = 45)
+	@Column(name = "tipo", nullable = false)
 	private String tipo;
 
 	@Column(name = "creadoEn")
@@ -58,10 +52,10 @@ public abstract class Dispositivo {
 	public Dispositivo() {
 	}
 
-	public Dispositivo(String nombre, boolean enabled, String tipo) {
+	public Dispositivo(String nombre, boolean activo, String tipo) {
 		super();
 		this.nombre = nombre;
-		this.enabled = enabled;
+		this.activo = activo;
 		this.tipo = tipo;
 	}
 
@@ -89,12 +83,12 @@ public abstract class Dispositivo {
 		this.nombre = nombre;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public boolean isActivo() {
+		return activo;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 
 	public String getTipo() {
