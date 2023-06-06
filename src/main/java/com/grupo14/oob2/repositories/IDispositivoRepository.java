@@ -21,8 +21,7 @@ public interface IDispositivoRepository extends JpaRepository<Dispositivo, Seria
 	@Query("SELECT d FROM Dispositivo d WHERE d.nombre = (:nombre)")
 	public abstract Dispositivo findByNombre(@Param("nombre") String nombre);
 
-	// * porque traera una lista
-	@Query("SELECT * FROM Dispositivo d WHERE d.tipo = (:tipo)")
+	@Query("SELECT d FROM Dispositivo d WHERE d.tipo = (:tipo)")
 	public abstract List<Dispositivo> findByTipoDesc(String tipo);
 
 	public abstract Dispositivo findByIdDispositivo(int idDispositivo);

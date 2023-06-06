@@ -12,42 +12,44 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 //import jakarta.persistence.FetchType;
 //import jakarta.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "dispositivo")
-// Abstract para que hereden cada dispositivo
 public abstract class Dispositivo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idDispositivo;
+	protected int idDispositivo;
 
 	@Column(name = "nombre", nullable = false)
-	private String nombre;
+	protected String nombre;
 
 	@Column(name = "activo")
-	private boolean activo;
+	protected boolean activo;
 
 //	No seria lo mismo que enabled?	
 //	@Column(name = "activo")
 //	private boolean activo;
 
 	@Column(name = "tipo", nullable = false)
-	private String tipo;
+	protected String tipo;
 
 	@Column(name = "creadoEn")
 	@CreationTimestamp
-	private LocalDateTime creadoEn;
+	protected LocalDateTime creadoEn;
 
 	@Column(name = "actualizadoEn")
 	@UpdateTimestamp
-	private LocalDateTime actualizadoEn;
+	protected LocalDateTime actualizadoEn;
 
 //	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
-//	private Set<Evento> eventos = new HashSet<Evento>();
+//	protected Set<Evento> eventos = new HashSet<Evento>();
 
 	public Dispositivo() {
 	}

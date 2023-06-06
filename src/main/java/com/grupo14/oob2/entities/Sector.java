@@ -27,7 +27,10 @@ public class Sector {
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sector")
+	// Collection 'com.grupo14.oob2.entities.Sector.dispositivos' is 'mappedBy' a
+	// property named 'sector' which does not exist in the target entity
+	// 'com.grupo14.oob2.entities.Dispositivo' -> saque [mappedBy = "sector"]
+	@OneToMany(fetch = FetchType.LAZY)
 	private Set<Dispositivo> dispositivos = new HashSet<Dispositivo>();
 
 	@Column(name = "creadoEn")

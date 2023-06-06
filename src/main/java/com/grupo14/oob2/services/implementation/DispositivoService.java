@@ -10,7 +10,7 @@ import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.repositories.IDispositivoRepository;
 import com.grupo14.oob2.services.IDispositivoService;
 
-@Service("dispositivoService")
+@Service
 public class DispositivoService implements IDispositivoService {
 
 	@Autowired
