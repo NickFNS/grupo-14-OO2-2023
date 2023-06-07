@@ -1,6 +1,9 @@
 package com.grupo14.oob2.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -38,7 +41,7 @@ public abstract class Dispositivo {
 	@UpdateTimestamp
 	protected LocalDateTime actualizadoEn;
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
-//	protected Set<Evento> eventos = new HashSet<Evento>()
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
+	protected Set<Evento> eventos = new HashSet<Evento>();
 
 }

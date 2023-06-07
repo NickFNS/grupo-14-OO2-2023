@@ -1,7 +1,5 @@
 package com.grupo14.oob2.services.implementation;
 
-import java.util.List;
-
 import com.grupo14.oob2.repositories.SectorRepository;
 import com.grupo14.oob2.services.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
