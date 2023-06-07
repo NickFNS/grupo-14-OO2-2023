@@ -60,5 +60,5 @@ build/
 
 ### Spring Tool Suite ###
 .metadata/
-.bin/
+bin/
 
