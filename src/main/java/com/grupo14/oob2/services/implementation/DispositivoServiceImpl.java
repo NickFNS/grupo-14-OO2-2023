@@ -7,40 +7,42 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.grupo14.oob2.entities.Dispositivo;
-import com.grupo14.oob2.repositories.IDispositivoRepository;
-import com.grupo14.oob2.services.IDispositivoService;
+import com.grupo14.oob2.repositories.DispositivoRepository;
+import com.grupo14.oob2.services.DispositivoService;
+
 
 @Service
-public class DispositivoService implements IDispositivoService {
+public class DispositivoServiceImpl implements DispositivoService {
 
 	@Autowired
-	@Qualifier("dispositivoRepository")
-	private IDispositivoRepository repo;
+	private DispositivoRepository dispositivoRepository;
 
-	@Override
-	public Dispositivo findByIdDispositivo(int idDispositivo) {
-		return repo.findByIdDispositivo(idDispositivo);
-	}
 
 	@Override
 	public Dispositivo findByNombre(String nombre) {
-		return repo.findByNombre(nombre);
+		return null;
+	}
+
+	@Override
+	public Dispositivo findByIdDispositivo(int idDispositivo) {
+		return null;
 	}
 
 	@Override
 	public List<Dispositivo> findByTipoDesc(String tipo) {
-		return repo.findByTipoDesc(tipo);
+		return null;
 	}
 
 	@Override
 	public List<Dispositivo> getAll() {
-		return repo.findAll();
+		return null;
 	}
+
 
 	@Override
 	public boolean removeByIdDispositivo(int idDispositivo) {
 		try {
-			repo.deleteById(idDispositivo);
+			dispositivoRepository.deleteById(idDispositivo);
 			return true;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
