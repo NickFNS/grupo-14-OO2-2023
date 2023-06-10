@@ -14,6 +14,9 @@ import com.grupo14.oob2.entities.Evento;
 @Repository
 public interface EventoRepository extends JpaRepository<Evento, Integer> {
 
+	//TODO: Revisar si se puede hacer con JPA O Scrud Repository
+
+
 	public abstract Evento findByIdEvento(int idEvento);
 
 	public abstract Evento findByDescription(String description);
