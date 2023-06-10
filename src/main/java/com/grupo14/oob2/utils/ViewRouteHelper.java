@@ -18,7 +18,7 @@ public class ViewRouteHelper {
     public final static String PERSON_PARTIAL_VIEW = "person/partialPersonView";
 
     //USER
-    public final static String USER_LOGIN = "user/login";
+    public final static String USER_LOGIN = "login/index";
     public final static String USER_LOGOUT = "user/logout";
 
     /**** Redirects ****/
