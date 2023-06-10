@@ -6,11 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @Table(name = "evento")
@@ -29,11 +28,8 @@ public class Evento {
 	@Column(name = "dateTime")
 	private LocalDateTime dateTime;
 
-
-	//  Un evento puede tener mas de un dispositivo?
-//	@OneToMany o @OneToOne?
-//  @JoinColumn(name = "dispositivo_id", nullable = false)	
-	// private Dispositivo dispositivo;
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_dispositivo")
+	private Dispositivo dispositivo;
 
 }

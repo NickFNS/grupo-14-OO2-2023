@@ -1,6 +1,9 @@
 package com.grupo14.oob2.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -11,7 +14,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 //@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @Table(name = "dispositivo")
@@ -32,13 +36,13 @@ public abstract class Dispositivo {
 
 	@Column(name = "created_at")
 	@CreationTimestamp
-	protected LocalDateTime creadoEn;
+	protected LocalDateTime created_at;
 
 	@Column(name = "updated_at")
 	@UpdateTimestamp
-	protected LocalDateTime actualizadoEn;
+	protected LocalDateTime updated_at;
 
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
-//	protected Set<Evento> eventos = new HashSet<Evento>()
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
+	protected Set<Evento> eventos = new HashSet<Evento>();
 
 }
