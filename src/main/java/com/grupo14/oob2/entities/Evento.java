@@ -28,9 +28,8 @@ public class Evento {
 	@Column(name = "dateTime")
 	private LocalDateTime dateTime;
 
-	// Nulleable va en true xq se agregan despues
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_dispositivo", nullable = true)
+	@JoinColumn(name = "id_dispositivo")
 	private Dispositivo dispositivo;
 
 }

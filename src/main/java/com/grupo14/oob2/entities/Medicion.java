@@ -33,7 +33,7 @@ public abstract class Medicion {
 	protected LocalDateTime registryDateTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_dispositivo", nullable = true)
+	@JoinColumn(name = "id_dispositivo")
 	protected Dispositivo dispositivo;
 
 }

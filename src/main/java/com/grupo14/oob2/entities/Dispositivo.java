@@ -38,7 +38,6 @@ public abstract class Dispositivo {
 	@CreationTimestamp
 	protected LocalDateTime created_at;
 
-	// Quiza deberiamos borrarlo, no hay que actualizar, sino crear nuevos eventos
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	protected LocalDateTime updated_at;
