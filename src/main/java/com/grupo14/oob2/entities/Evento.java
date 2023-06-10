@@ -30,7 +30,7 @@ public class Evento {
 
 	// Nulleable va en true xq se agregan despues
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_dispositivo", nullable = true)	
-	 private Dispositivo dispositivo;
+	@JoinColumn(name = "id_dispositivo", nullable = true)
+	private Dispositivo dispositivo;
 
 }

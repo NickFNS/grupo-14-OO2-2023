@@ -14,7 +14,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 //@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
 @Table(name = "dispositivo")
@@ -35,11 +36,12 @@ public abstract class Dispositivo {
 
 	@Column(name = "created_at")
 	@CreationTimestamp
-	protected LocalDateTime creadoEn;
+	protected LocalDateTime created_at;
 
+	// Quiza deberiamos borrarlo, no hay que actualizar, sino crear nuevos eventos
 	@Column(name = "updated_at")
 	@UpdateTimestamp
-	protected LocalDateTime actualizadoEn;
+	protected LocalDateTime updated_at;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
 	protected Set<Evento> eventos = new HashSet<Evento>();
