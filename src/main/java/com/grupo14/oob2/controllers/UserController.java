@@ -16,8 +16,8 @@ public class UserController {
     public String login(Model model,
                         @RequestParam(name="error",required=false) String error,
                         @RequestParam(name="logout", required=false) String logout) {
-        //model.addAttribute("error", error);
-        //model.addAttribute("logout", logout);
+        model.addAttribute("error", error);
+        model.addAttribute("logout", logout);
         return ViewRouteHelper.USER_LOGIN;
     }
 
