@@ -30,12 +30,16 @@ public class DispositivoServiceImpl implements DispositivoService {
 	public List<Dispositivo> getAll() {
 		return dispositivoRepository.findAll();
 	}
+	
+	@Override
+	public List<Dispositivo> FindAllEstacionamiento() {
+		return dispositivoRepository.findAllEstacionamientos();
+	}
 
 	@Override
 	// public DispositivoModel
 	public Dispositivo insertOrUpdateDispositivo(Dispositivo d) {
 		Dispositivo newDispositivo = dispositivoRepository.save(d);
-		// return modelMapper.map(newDispositivo, DispositivoModel.class);
 		return newDispositivo;
 	}
 
@@ -51,5 +55,6 @@ public class DispositivoServiceImpl implements DispositivoService {
 			return false;
 		}
 	}
+
 
 }

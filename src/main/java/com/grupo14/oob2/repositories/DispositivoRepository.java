@@ -14,8 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DispositivoRepository extends JpaRepository<Dispositivo, Integer> {
 
-	//TODO: Revisar si se puede hacer con JPA O Scrud Repository
+	// TODO: Revisar si se puede hacer con JPA O Scrud Repository
 
+	// Estacionamiento
 	@Query("SELECT e FROM Estacionamiento e")
 	List<Dispositivo> findAllEstacionamientos();
 
