@@ -1,5 +1,8 @@
 package com.grupo14.oob2.controllers;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -25,10 +29,10 @@ public class EstacionamientoController {
 
 	@GetMapping("/show")
 	public ModelAndView getEstacionamientos() {
-		ModelAndView mV = new ModelAndView();
-		mV.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
-		mV.addObject("estacionamiento", dispositivoService.FindAllEstacionamiento());
-		return mV;
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
+		modelAndView.addObject("estacionamientos", dispositivoService.FindAllEstacionamiento());
+		return modelAndView;
 	}
 
 	@GetMapping("/new")
@@ -43,5 +47,11 @@ public class EstacionamientoController {
 		dispositivoService.insertOrUpdateDispositivo(modelMapper.map(estacionamiento, Estacionamiento.class));
 		return new RedirectView(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
 	}
+	
+	//TODO: Hacer funcionar los filtros.
+	@GetMapping
+    public List<Estacionamiento> getEstacionamientosByFecha(@RequestParam("fecha") LocalDate fecha) {
+        return dispositivoService.findEstacionamientosByDate(fecha);
+    }
 
 }

@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Create new Estacionamiento</title>
+	<meta charset="UTF-8">
+	<title>Create new Estacionamiento</title>
 </head>
+
 <body>
-    <h1>Create new Estacionamiento</h1>
-    <form th:action="@{/estacionamiento/create}" method="post" th:object="${estacionamiento}">
-   
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        
-       	<p>Places: <input type="number" th:field="*{places}" /></p>
-        
-        <input type="submit" value="Create Estacionamiento"/>
-        
-    </form>
+
+	<h1>Create new Estacionamiento</h1>
+	<form th:action="@{/estacionamiento/create}" method="post" th:object="${estacionamiento}">
+
+		<p>Name: <input type="text" th:field="*{name}" /></p>
+
+		<p>Places: <input type="number" th:field="*{places}" /></p>
+
+		<input type="submit" value="Create Estacionamiento" />
+
+	</form>
 </body>
+
 </html>

@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Tabla de Personas</title>
+	<meta charset="UTF-8">
+	<title>Estacionamientos</title>
+
+	<script src="prueba.js"></script>
+
 </head>
+
 <body>
-    <h1>Tabla de Estacionamiento</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>IdDispositivo</th>
-                <th>Name</th>
-                <th>Created_at</th>
-                <th>Places</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-           <tr th:each="estacionamiento : ${estacionamientos}">
-                <td th:text="${estacionamiento.idDispositivo}"></td>
-                <td th:text="${estacionamiento.name}"></td>
-                <td th:text="${estacionamiento.created_at}"></td>
-                <td th:text="${#sets.toList(estacionamiento.places)}"></td>
-            </tr>
-        </tbody>
-    </table>
+
+	<h1>Tabla de Estacionamiento</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>IdDispositivo</th>
+				<th>Name</th>
+				<th>Created_at</th>
+				<th>Places</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<div id="estacionamientosContainer">
+				<tr th:each="estacionamiento : ${estacionamientos}">
+					<td th:text="${estacionamiento.idDispositivo}"></td>
+					<td th:text="${estacionamiento.name}"></td>
+					<td th:text="${estacionamiento.created_at}"></td>
+					<td th:text="${#lists.toList(estacionamiento.places)}"></td>
+				</tr>
+			</div>
+		</tbody>
+	</table>
 </body>
+
 </html>
