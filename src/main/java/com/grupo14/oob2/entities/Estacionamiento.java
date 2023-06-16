@@ -1,5 +1,6 @@
 package com.grupo14.oob2.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,14 +32,14 @@ public class Estacionamiento extends Dispositivo {
 	@ElementCollection
 	@CollectionTable(name = "estacionamiento", joinColumns = @JoinColumn(name = "id_dispositivo"))
 	@Column(name = "places")
-	private Set<Integer> places = new HashSet<Integer>();
+	private List<Integer> places = new ArrayList<Integer>();
 
 	// TODO: Revisar que no funciona el Lombok
-	public Set<Integer> getPlaces() {
+	public List<Integer> getPlaces() {
 		return places;
 	}
 
-	public void setPlaces(Set<Integer> places) {
+	public void setPlaces(List<Integer> places) {
 		this.places = places;
 	}
 

@@ -1,6 +1,10 @@
 package com.grupo14.oob2.controllers;
 
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -27,18 +31,60 @@ public class EstacionamientoController {
 
 	private ModelMapper modelMapper = new ModelMapper();
 
+//	@GetMapping("/show")
+//	public ModelAndView getEstacionamientos() {
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
+//		modelAndView.addObject("estacionamientos", dispositivoService.FindAllEstacionamiento());
+//		return modelAndView;
+//	}
+
+//	 estacionamiento/show?fecha=2023-06-12
 	@GetMapping("/show")
-	public ModelAndView getEstacionamientos() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
-		modelAndView.addObject("estacionamientos", dispositivoService.FindAllEstacionamiento());
-		return modelAndView;
+	public ModelAndView getEstacionamientos(@RequestParam(value = "fecha", required = false) String fechaString,
+	                                        @RequestParam(value = "nombre", required = false) String nombre) {
+	    ModelAndView modelAndView = new ModelAndView();
+	    modelAndView.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
+
+	    List<Estacionamiento> estacionamientos = null;
+
+	    if (fechaString != null && !fechaString.isEmpty() && nombre != null && !nombre.isEmpty()) {
+	        try {
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	            Date fecha = dateFormat.parse(fechaString);
+
+	            estacionamientos = dispositivoService.findEstacionamientosByDateAndName(fecha, nombre);
+	        } catch (ParseException e) {
+	            // Manejo de la excepción en caso de que la cadena no pueda ser parseada como fecha
+	            // Aquí puedes agregar un mensaje de error o realizar alguna acción adecuada
+	        }
+	    } else if (fechaString != null && !fechaString.isEmpty()) {
+	        try {
+	            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	            Date fecha = dateFormat.parse(fechaString);
+
+	            estacionamientos = dispositivoService.findEstacionamientosByDate(fecha);
+	        } catch (ParseException e) {
+	            // Manejo de la excepción en caso de que la cadena no pueda ser parseada como fecha
+	            // Aquí puedes agregar un mensaje de error o realizar alguna acción adecuada
+	        }
+	    } else if (nombre != null && !nombre.isEmpty()) {
+	        estacionamientos = dispositivoService.findEstacionamientosByName(nombre);
+	    } else {
+	        estacionamientos = dispositivoService.FindAllEstacionamiento();
+	    }
+
+	    modelAndView.addObject("estacionamientos", estacionamientos);
+	    return modelAndView;
 	}
 
 	@GetMapping("/new")
 	public ModelAndView newEstacionamiento() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.FORM_NEW_ESTACIONAMIENTO);
-		mV.addObject("estacionamiento", new Estacionamiento());
+		Estacionamiento estacionamiento = new Estacionamiento();
+		estacionamiento.setPlaces(new ArrayList<Integer>()); // Agrega esta línea para inicializar places como una lista
+																// vacía
+		mV.addObject("estacionamiento", estacionamiento);
 		return mV;
 	}
 
@@ -47,11 +93,5 @@ public class EstacionamientoController {
 		dispositivoService.insertOrUpdateDispositivo(modelMapper.map(estacionamiento, Estacionamiento.class));
 		return new RedirectView(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
 	}
-	
-	//TODO: Hacer funcionar los filtros.
-	@GetMapping
-    public List<Estacionamiento> getEstacionamientosByFecha(@RequestParam("fecha") LocalDate fecha) {
-        return dispositivoService.findEstacionamientosByDate(fecha);
-    }
 
 }

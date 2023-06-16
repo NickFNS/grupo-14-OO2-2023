@@ -1,6 +1,6 @@
 package com.grupo14.oob2.services.implementation;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,17 +34,6 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.findAll();
 	}
 
-	@Override
-	public List<Dispositivo> FindAllEstacionamiento() {
-		return dispositivoRepository.findAllEstacionamientos();
-	}
-
-//	@Override
-//	// public DispositivoModel
-//	public Dispositivo insertOrUpdateDispositivo(Dispositivo d) {
-//		Dispositivo newDispositivo = dispositivoRepository.save(d);
-//		return newDispositivo;
-//	}
 
 	// TODO: Verificar que funcione bien el agregar.
 	@Override
@@ -87,9 +76,27 @@ public class DispositivoServiceImpl implements DispositivoService {
 		}
 	}
 
+	
+	//ESTACIONAMIENTOS: 
+	
 	@Override
-	public List<Estacionamiento> findEstacionamientosByDate(LocalDate date) {
+	public List<Estacionamiento> FindAllEstacionamiento() {
+		return dispositivoRepository.findAllEstacionamientos();
+	}
+	// Changed LocalDate to Date.
+	@Override
+	public List<Estacionamiento> findEstacionamientosByDate(Date date) {
 		return dispositivoRepository.findEstacionamientosByDate(date);
+	}
+
+	@Override
+	public List<Estacionamiento> findEstacionamientosByName(String name) {
+		return dispositivoRepository.findEstacionamientosByName(name);
+	}
+
+	@Override
+	public List<Estacionamiento> findEstacionamientosByDateAndName(Date date, String name) {
+		return dispositivoRepository.findEstacionamientosByDateAndName(date, name);
 	}
 
 }

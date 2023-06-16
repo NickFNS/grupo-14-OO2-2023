@@ -13,11 +13,18 @@
 
 		<p>Name: <input type="text" th:field="*{name}" /></p>
 
-		<p>Places: <input type="number" th:field="*{places}" /></p>
-
+		<p>Places:</p>
+		<div th:each="place, iter : *{places}">
+			<input type="number" th:field="*{places[__${iter.index}__]}" />
+		</div>
 		<input type="submit" value="Create Estacionamiento" />
 
 	</form>
+	
+	<a href="/estacionamiento/show" class="btn btn-primary">Ver estacionamientos</a>
 </body>
 
 </html>
+<!--
+		<p>Places: <input type="number" th:field="*{places}" /></p>
+		-->

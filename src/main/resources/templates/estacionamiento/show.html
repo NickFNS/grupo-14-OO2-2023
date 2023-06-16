@@ -13,6 +13,16 @@
 
 	<h1>Tabla de Estacionamiento</h1>
 
+	<form method="GET" action="/estacionamiento/show">
+		<label for="fecha">Ingrese una fecha:</label>
+		<input type="date" id="fecha" name="fecha">
+
+		<label for="nombre">Ingrese un nombre:</label>
+		<input type="text" id="nombre" name="nombre">
+
+		<button type="submit">Buscar</button>
+	</form>
+
 	<table>
 		<thead>
 			<tr>
@@ -34,6 +44,8 @@
 			</div>
 		</tbody>
 	</table>
+
+	<a href="/estacionamiento/new" class="btn btn-primary">Crear nuevo estacionamiento</a>
 </body>
 
 </html>

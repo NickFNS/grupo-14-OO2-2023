@@ -1,8 +1,9 @@
 package com.grupo14.oob2.services;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.grupo14.oob2.entities.Dispositivo;
@@ -16,14 +17,22 @@ public interface DispositivoService {
 
 	public abstract List<Dispositivo> getAll();
 
-	@ModelAttribute("estacionamiento")
-	public abstract List<Dispositivo> FindAllEstacionamiento();
-
-	@ModelAttribute("estacionamiento")
-	public abstract List<Estacionamiento> findEstacionamientosByDate(LocalDate date);
-
 	public Dispositivo insertOrUpdateDispositivo(Dispositivo d);
 
 	public abstract boolean removeByIdDispositivo(int idDispositivo);
+
+	// ESTACIONAMIENTO:
+	@ModelAttribute("estacionamiento")
+	public abstract List<Estacionamiento> FindAllEstacionamiento();
+
+	// Changed LocalDate to Date.
+	@ModelAttribute("estacionamiento")
+	public abstract List<Estacionamiento> findEstacionamientosByDate(Date date);
+
+	@ModelAttribute("estacionamiento")
+	public abstract List<Estacionamiento> findEstacionamientosByName(String name);
+
+	@ModelAttribute("estacionamiento")
+	public abstract List<Estacionamiento> findEstacionamientosByDateAndName(Date date, String name);
 
 }

@@ -3,7 +3,7 @@ package com.grupo14.oob2.repositories;
 import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.entities.Estacionamiento;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,13 +18,19 @@ public interface DispositivoRepository extends JpaRepository<Dispositivo, Intege
 
 	// Estacionamiento
 	@Query("SELECT e FROM Estacionamiento e")
-	List<Dispositivo> findAllEstacionamientos();
+	List<Estacionamiento> findAllEstacionamientos();
 
-	// List de Estacionamiento o de Dispositivo?
-	@Query("SELECT e FROM Estacionamiento e WHERE DATE(e.created_at) = (:date)")
-	List<Estacionamiento> findEstacionamientosByDate(@Param("date") LocalDate date);
+	// Changed LocalDate to Date.
+	@Query("SELECT e FROM Estacionamiento e WHERE FUNCTION('DATE', e.created_at) = :date")
+	List<Estacionamiento> findEstacionamientosByDate(@Param("date") Date date);
 
 	@Query("SELECT e FROM Estacionamiento e WHERE e.enabled = (:enabled)")
 	List<Estacionamiento> findEstacionamientosByEnabled(@Param("enabled") boolean enabled);
+
+	@Query("SELECT e FROM Estacionamiento e WHERE e.name = (:name)")
+	List<Estacionamiento> findEstacionamientosByName(@Param("name") String name);
+
+	@Query("SELECT e FROM Estacionamiento e WHERE FUNCTION('DATE', e.created_at) = :date AND e.name = (:name)")
+	List<Estacionamiento> findEstacionamientosByDateAndName(@Param("date") Date date, @Param("name") String name);
 
 }
