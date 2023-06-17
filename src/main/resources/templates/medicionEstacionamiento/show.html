@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mediciones de Estacionamiento</title>
+</head>
+<body>
+    <h1>Mediciones de Estacionamiento</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha y Hora</th>
+                <th>Dispositivo</th>
+                <th>Número de Plaza</th>
+                <th>Ocupado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre las mediciones de estacionamiento y mostrar los datos -->
+            <tr th:each="medicion : ${medicionesEstacionamiento}">
+                <td th:text="${medicion.idMedicion}"></td>
+                <td th:text="${medicion.registryDateTime}"></td>
+                <td th:text="${medicion.dispositivo.nombre}"></td>
+                <td th:text="${medicion.place_number}"></td>
+                <td th:text="${medicion.occupied}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -43,8 +43,8 @@ public class EstacionamientoController {
 	@GetMapping("/show")
 	public ModelAndView getEstacionamientos(@RequestParam(value = "fecha", required = false) String fechaString,
 	                                        @RequestParam(value = "nombre", required = false) String nombre) {
-	    ModelAndView modelAndView = new ModelAndView();
-	    modelAndView.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
+	    ModelAndView mV = new ModelAndView();
+	    mV.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
 
 	    List<Estacionamiento> estacionamientos = null;
 
@@ -74,8 +74,8 @@ public class EstacionamientoController {
 	        estacionamientos = dispositivoService.FindAllEstacionamiento();
 	    }
 
-	    modelAndView.addObject("estacionamientos", estacionamientos);
-	    return modelAndView;
+	    mV.addObject("estacionamientos", estacionamientos);
+	    return mV;
 	}
 
 	@GetMapping("/new")

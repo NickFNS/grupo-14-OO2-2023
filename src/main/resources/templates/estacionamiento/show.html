@@ -30,6 +30,7 @@
 				<th>Name</th>
 				<th>Created_at</th>
 				<th>Places</th>
+				<th>Medicion</th>
 			</tr>
 		</thead>
 
@@ -40,6 +41,11 @@
 					<td th:text="${estacionamiento.name}"></td>
 					<td th:text="${estacionamiento.created_at}"></td>
 					<td th:text="${#lists.toList(estacionamiento.places)}"></td>
+					<td>
+						<a
+							th:href="@{/medicionEstacionamiento/new(idEstacionamiento=${estacionamiento.idDispositivo})}">Crear
+							Medicion</a>
+					</td>
 				</tr>
 			</div>
 		</tbody>

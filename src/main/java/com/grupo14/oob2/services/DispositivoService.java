@@ -3,7 +3,6 @@ package com.grupo14.oob2.services;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.grupo14.oob2.entities.Dispositivo;

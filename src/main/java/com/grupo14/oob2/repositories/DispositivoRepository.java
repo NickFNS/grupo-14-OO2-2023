@@ -19,8 +19,7 @@ public interface DispositivoRepository extends JpaRepository<Dispositivo, Intege
 	// Estacionamiento
 	@Query("SELECT e FROM Estacionamiento e")
 	List<Estacionamiento> findAllEstacionamientos();
-
-	// Changed LocalDate to Date.
+	
 	@Query("SELECT e FROM Estacionamiento e WHERE FUNCTION('DATE', e.created_at) = :date")
 	List<Estacionamiento> findEstacionamientosByDate(@Param("date") Date date);
 
