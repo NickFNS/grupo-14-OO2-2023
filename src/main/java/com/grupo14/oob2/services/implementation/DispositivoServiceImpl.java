@@ -1,10 +1,12 @@
 package com.grupo14.oob2.services.implementation;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grupo14.oob2.entities.Banio;
 import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.repositories.DispositivoRepository;
 import com.grupo14.oob2.services.DispositivoService;
@@ -20,7 +22,6 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.getById(idDispositivo);
 	}
 
-	// A revisar
 	@Override
 	public List<Dispositivo> findByTipoDesc(String tipo) {
 		return null;
@@ -32,18 +33,14 @@ public class DispositivoServiceImpl implements DispositivoService {
 	}
 
 	@Override
-	// public DispositivoModel
 	public Dispositivo insertOrUpdateDispositivo(Dispositivo d) {
 		Dispositivo newDispositivo = dispositivoRepository.save(d);
-		// return modelMapper.map(newDispositivo, DispositivoModel.class);
 		return newDispositivo;
 	}
 
 	@Override
 	public boolean removeByIdDispositivo(int idDispositivo) {
 		try {
-			// Cambiar esto a que en vez de eliminarlo, lo "inactive", la baja tiene que ser
-			// Logica.
 			dispositivoRepository.deleteById(idDispositivo);
 			return true;
 		} catch (Exception e) {
@@ -51,5 +48,26 @@ public class DispositivoServiceImpl implements DispositivoService {
 			return false;
 		}
 	}
+	
+	//BAÑOS:
+	
+	@Override
+	public List<Banio> findAllBanios() {
+		return dispositivoRepository.findAllBanios();
+	}
+	
+	@Override
+	public List<Banio> findBaniosByDate(Date date) {
+		return dispositivoRepository.findBaniosByDate(date);
+	}
 
+	@Override
+	public List<Banio> findBaniosByName(String name) {
+		return dispositivoRepository.findBaniosByName(name);
+	}
+
+	@Override
+	public List<Banio> findBaniosByDateAndName(Date date, String name) {
+		return dispositivoRepository.findBaniosByDateAndName(date, name);
+	}
 }
