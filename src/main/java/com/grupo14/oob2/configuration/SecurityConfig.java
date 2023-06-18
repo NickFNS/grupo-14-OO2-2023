@@ -34,7 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/index").permitAll()
                 .and()
                 .logout()
-                .permitAll().logoutSuccessUrl("/logout");
+                .logoutUrl("/logout") // Especifica la URL de logout
+                .logoutSuccessUrl("/login") // URL a la que se redirige después del logout exitoso
+                .invalidateHttpSession(true) // Invalida la sesión HTTP existente
+                .deleteCookies("JSESSIONID") // Elimina las cookies específicas (en este caso, JSESSIONID)
+                .permitAll();
     }
 
     @Bean

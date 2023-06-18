@@ -3,6 +3,8 @@ package com.grupo14.oob2.controllers;
 import com.grupo14.oob2.utils.ViewRouteHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +28,12 @@ public class HomeController {
 
     @GetMapping("/")
     public RedirectView redirectToHomeIndex() {
-        return new RedirectView(ViewRouteHelper.ROUTE);
+        RedirectView redirect =new RedirectView(ViewRouteHelper.ROUTE);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(user.getUsername());
+        if(user.getUsername() == null) {
+            redirect = new RedirectView(ViewRouteHelper.USER_LOGIN);
+        }
+        return redirect;
     }
-
-
-
 }
