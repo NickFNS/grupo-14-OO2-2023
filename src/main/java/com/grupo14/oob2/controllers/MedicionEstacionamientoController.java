@@ -1,5 +1,7 @@
 package com.grupo14.oob2.controllers;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo14.oob2.entities.Estacionamiento;
+import com.grupo14.oob2.entities.Evento;
 import com.grupo14.oob2.entities.MedicionEstacionamiento;
 import com.grupo14.oob2.services.DispositivoService;
+import com.grupo14.oob2.services.EventoService;
 import com.grupo14.oob2.services.MedicionService;
 
 @Controller
@@ -21,18 +25,18 @@ public class MedicionEstacionamientoController {
 	@Autowired
 	private DispositivoService dispositivoService;
 
-	// TODO: Crea la medicion, pero sin el id de dispositivo.
+	@Autowired
+	private EventoService eventoService;
+
 	@PostMapping("/create")
 	public String crearMedicionEstacionamiento(@RequestParam("idEstacionamiento") int estacionamientoId) {
-		// Buscar el estacionamiento por su ID
 		Estacionamiento estacionamiento = dispositivoService.findEstacionamientoByIdDispositivo(estacionamientoId);
 
 		if (estacionamiento != null) {
-			// Crear una nueva instancia de MedicionEstacionamiento
 			MedicionEstacionamiento nuevaMedicion = new MedicionEstacionamiento();
 			nuevaMedicion.setDispositivo(estacionamiento);
 
-			// Cambiar el valor de occupied en base al estado anterior
+			// Cambiar el valor de occupied segun el estado anterior
 			boolean nuevoEstado = true; // Valor predeterminado cuando no hay mediciones anteriores
 			MedicionEstacionamiento ultimaMedicion = medicionService.getUltimaMedicionEstacionamiento(estacionamiento)
 					.stream().findFirst().orElse(null);
@@ -43,9 +47,21 @@ public class MedicionEstacionamientoController {
 				nuevoEstado = true;
 			}
 			nuevaMedicion.setOccupied(nuevoEstado);
-
-			// Guardar la nueva medicionEstacionamiento en la base de datos
 			medicionService.insertOrUpdate(nuevaMedicion);
+
+			// Creacion de Evento en base a la nueva medicion:
+			Evento nuevoEvento = new Evento();
+			if (nuevoEstado) {
+				nuevoEvento.setDescription("Estacionamiento Ocupado");
+			} else {
+				nuevoEvento.setDescription("Estacionamiento Desocupado");
+			}
+
+			nuevoEvento.setEnabled(true);
+			nuevoEvento.setDateTime(LocalDateTime.now());
+			nuevoEvento.setDispositivo(estacionamiento);
+
+			eventoService.insertOrUpdateEvento(nuevoEvento);
 
 			return "redirect:/estacionamiento/show";
 		}
@@ -55,4 +71,3 @@ public class MedicionEstacionamientoController {
 	}
 
 }
-

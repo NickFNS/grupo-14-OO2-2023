@@ -50,4 +50,9 @@ public class EventoServiceImpl implements EventoService {
 		}
 	}
 
+	@Override
+	public List<Evento> findByDispositivoType(String type) {
+		return eventoRepository.findByDispositivoType(type);
+	}
+
 }

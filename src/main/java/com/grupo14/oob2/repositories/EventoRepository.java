@@ -15,11 +15,12 @@ import com.grupo14.oob2.entities.Evento;
 public interface EventoRepository extends JpaRepository<Evento, Integer> {
 
 	//TODO: Revisar si se puede hacer con JPA O Scrud Repository
-
-
+	
 	public abstract Evento findByIdEvento(int idEvento);
 
 	public abstract Evento findByDescription(String description);
+	
+	List<Evento> findByDispositivoType(String type);
 
 	@Query("SELECT e FROM Evento e JOIN FETCH e.dispositivo d WHERE d.idDispositivo = (:idDispositivo)")
 	List<Evento> findEventosByDispositivo(@Param("idDispositivo") int idDispositivo);
