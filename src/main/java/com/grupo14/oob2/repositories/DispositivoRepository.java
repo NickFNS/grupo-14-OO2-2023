@@ -17,6 +17,9 @@ public interface DispositivoRepository extends JpaRepository<Dispositivo, Intege
 	// TODO: Revisar si se puede hacer con JPA O Scrud Repository
 
 	// Estacionamiento
+	@Query("SELECT e FROM Estacionamiento e WHERE e.idDispositivo =(:idDispositivo)")
+	Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo);
+	
 	@Query("SELECT e FROM Estacionamiento e")
 	List<Estacionamiento> findAllEstacionamientos();
 	

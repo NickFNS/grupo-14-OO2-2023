@@ -99,4 +99,9 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.findEstacionamientosByDateAndName(date, name);
 	}
 
+	@Override
+	public Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo) {
+		return dispositivoRepository.findEstacionamientoByIdDispositivo(idDispositivo);
+	}
+
 }

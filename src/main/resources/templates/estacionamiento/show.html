@@ -42,10 +42,11 @@
 					<td th:text="${estacionamiento.created_at}"></td>
 					<td th:text="${#lists.toList(estacionamiento.places)}"></td>
 					<td>
-						<a
-							th:href="@{/medicionEstacionamiento/new(idEstacionamiento=${estacionamiento.idDispositivo})}">Crear
-							Medicion</a>
-					</td>
+                    <form th:action="@{/medicionEstacionamiento/create}" method="post">
+                        <input type="hidden" name="idEstacionamiento" th:value="${estacionamiento.idDispositivo}" />
+                        <button type="submit">Crear Medicion</button>
+                    </form>
+                </td>
 				</tr>
 			</div>
 		</tbody>
@@ -55,3 +56,5 @@
 </body>
 
 </html>
+
+

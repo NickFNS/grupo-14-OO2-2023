@@ -33,5 +33,8 @@ public interface DispositivoService {
 
 	@ModelAttribute("estacionamiento")
 	public abstract List<Estacionamiento> findEstacionamientosByDateAndName(Date date, String name);
+	
+	@ModelAttribute("estacionamiento")
+	public abstract Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo);
 
 }
