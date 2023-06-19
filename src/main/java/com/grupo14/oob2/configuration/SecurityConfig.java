@@ -23,10 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userServiceImpl).passwordEncoder(passwordEncoder());
     }
 
+    String[] resources = new String[]{
+            "/include/**","/css/**","/img/**"
+    };
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers(resources).permitAll()
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and() .formLogin() .loginPage("/login").loginProcessingUrl("/loginprocess")

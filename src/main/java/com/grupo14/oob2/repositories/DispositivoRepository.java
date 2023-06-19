@@ -1,5 +1,6 @@
 package com.grupo14.oob2.repositories;
 
+import com.grupo14.oob2.entities.DAula;
 import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.entities.Estacionamiento;
 
