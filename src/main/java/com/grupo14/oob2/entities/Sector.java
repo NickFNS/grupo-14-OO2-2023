@@ -27,6 +27,7 @@ public class Sector {
 	@Column(name = "name", nullable = false)
 	private String name;
 
+	// Son necesarios?
 	@Column(name = "created_at")
 	@CreationTimestamp
 	private LocalDateTime created_at;

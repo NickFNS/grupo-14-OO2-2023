@@ -36,8 +36,7 @@ public class DispositivoServiceImpl implements DispositivoService {
 
 
 	// TODO: Verificar que funcione bien el agregar.
-	@Override
-	public Dispositivo insertOrUpdateDispositivo(Dispositivo d) {
+	public Dispositivo insertOrUpdateEstacionamiento(Dispositivo d) {
 		if (d instanceof Estacionamiento) {
 			Estacionamiento estacionamiento = (Estacionamiento) d;
 			if (estacionamiento.getIdDispositivo() != 0) {
@@ -97,6 +96,11 @@ public class DispositivoServiceImpl implements DispositivoService {
 	@Override
 	public List<Estacionamiento> findEstacionamientosByDateAndName(Date date, String name) {
 		return dispositivoRepository.findEstacionamientosByDateAndName(date, name);
+	}
+
+	@Override
+	public Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo) {
+		return dispositivoRepository.findEstacionamientoByIdDispositivo(idDispositivo);
 	}
 
 }

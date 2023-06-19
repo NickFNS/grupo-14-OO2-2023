@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,11 +31,21 @@ public abstract class Medicion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected int idMedicion;
 
+	@CreationTimestamp
 	@Column(name = "registryDateTime")
 	protected LocalDateTime registryDateTime;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_dispositivo")
 	protected Dispositivo dispositivo;
+
+	// TODO: Verificar que no funciona Lombok.
+	public Dispositivo getDispositivo() {
+		return dispositivo;
+	}
+
+	public void setDispositivo(Dispositivo dispositivo) {
+		this.dispositivo = dispositivo;
+	}
 
 }

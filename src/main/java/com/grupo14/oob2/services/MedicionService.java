@@ -2,6 +2,7 @@ package com.grupo14.oob2.services;
 
 import java.util.List;
 
+import com.grupo14.oob2.entities.Estacionamiento;
 import com.grupo14.oob2.entities.Medicion;
 import com.grupo14.oob2.entities.MedicionEstacionamiento;
 
@@ -19,5 +20,7 @@ public interface MedicionService {
 	
 	// ESTACIONAMIENTOS
 	public List<MedicionEstacionamiento> getAllMedicionEstacionamiento();
+	
+	public List<MedicionEstacionamiento> getUltimaMedicionEstacionamiento(Estacionamiento estacionamiento);
 
 }

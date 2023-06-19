@@ -16,4 +16,7 @@ public interface EventoService {
 	
 	public abstract boolean removeByIdEvento(int idEvento);
 	
+	// Buscar segun tipo de dispositivo:
+	public List<Evento> findByDispositivoType(String type);
+	
 }

@@ -31,15 +31,6 @@ public class EstacionamientoController {
 
 	private ModelMapper modelMapper = new ModelMapper();
 
-//	@GetMapping("/show")
-//	public ModelAndView getEstacionamientos() {
-//		ModelAndView modelAndView = new ModelAndView();
-//		modelAndView.setViewName(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
-//		modelAndView.addObject("estacionamientos", dispositivoService.FindAllEstacionamiento());
-//		return modelAndView;
-//	}
-
-//	 estacionamiento/show?fecha=2023-06-12
 	@GetMapping("/show")
 	public ModelAndView getEstacionamientos(@RequestParam(value = "fecha", required = false) String fechaString,
 	                                        @RequestParam(value = "nombre", required = false) String nombre) {
@@ -82,15 +73,17 @@ public class EstacionamientoController {
 	public ModelAndView newEstacionamiento() {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.FORM_NEW_ESTACIONAMIENTO);
 		Estacionamiento estacionamiento = new Estacionamiento();
-		estacionamiento.setPlaces(new ArrayList<Integer>()); // Agrega esta línea para inicializar places como una lista
-																// vacía
+		
+		estacionamiento.setPlaces(new ArrayList<Integer>()); 
+
 		mV.addObject("estacionamiento", estacionamiento);
 		return mV;
 	}
 
 	@PostMapping("/create")
 	public RedirectView create(@ModelAttribute("estacionamiento") Estacionamiento estacionamiento) {
-		dispositivoService.insertOrUpdateDispositivo(modelMapper.map(estacionamiento, Estacionamiento.class));
+		estacionamiento.setType("Estacionamiento");
+		dispositivoService.insertOrUpdateEstacionamiento(modelMapper.map(estacionamiento, Estacionamiento.class));
 		return new RedirectView(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
 	}
 
