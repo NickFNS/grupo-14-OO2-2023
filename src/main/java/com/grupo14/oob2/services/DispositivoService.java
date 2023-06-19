@@ -18,7 +18,7 @@ public interface DispositivoService {
 
 	public abstract List<Dispositivo> getAll();
 
-	public Dispositivo insertOrUpdateDispositivo(Dispositivo d);
+	public Dispositivo insertOrUpdateBanio(Dispositivo d);
 
 	public abstract boolean removeByIdDispositivo(int idDispositivo);
 

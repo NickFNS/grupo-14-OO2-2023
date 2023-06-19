@@ -19,8 +19,13 @@ public class Banio extends Dispositivo {
 
 	@Column(name = "bathroom_number")
 	private int bathroom_number;
-	
-	// Definir Set de días de higienizado u
-	// otra forma de agrupar las ocupaciones de los baños
+
+	public int getBathroom_number() {
+		return bathroom_number;
+	}
+
+	public void setBathroom_number(int bathroom_number) {
+		this.bathroom_number = bathroom_number;
+	}
 
 }

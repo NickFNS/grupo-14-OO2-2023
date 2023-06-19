@@ -32,11 +32,25 @@ public class DispositivoServiceImpl implements DispositivoService {
 	public List<Dispositivo> getAll() {
 		return dispositivoRepository.findAll();
 	}
-	
+
 	// A desarrollar
 	@Override
-	public Dispositivo insertOrUpdateDispositivo(Dispositivo d) {
-		return d;
+	public Dispositivo insertOrUpdateBanio(Dispositivo d) {
+		if (d instanceof Banio) {
+			Banio Banio = (Banio) d;
+			if (Banio.getIdDispositivo() != 0) {
+				Optional<Dispositivo> existingDispositivo = dispositivoRepository
+						.findById(Banio.getIdDispositivo());
+				if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Banio) {
+					Banio existingBanio = (Banio) existingDispositivo.get();
+					existingBanio.setBathroom_number(Banio.getBathroom_number());
+					Dispositivo savedDispositivo = dispositivoRepository.save(existingBanio);
+					return savedDispositivo;
+				}
+			}
+		}
+		Dispositivo newDispositivo = dispositivoRepository.save(d);
+		return newDispositivo;
 	}
 
 	@Override

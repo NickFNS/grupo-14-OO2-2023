@@ -13,7 +13,7 @@
 
 	<h1>Tabla de Baño</h1>
 
-	<form method="GET" action="/banio/show">
+	<form method="GET" action="/banio">
 		<label for="fecha">Ingrese una fecha:</label>
 		<input type="date" id="fecha" name="fecha">
 
@@ -35,21 +35,17 @@
 		</thead>
 
 		<tbody>
-			<div id="baniosContainer">
-				<tr th:each="baño : ${banios}">
-					<td th:text="${banio.idDispositivo}"></td>
-					<td th:text="${banio.name}"></td>
-					<td th:text="${banio.created_at}"></td>
-					<td>
-						<a th:href="@{/medicionBanio/new(idBanio=${banio.idDispositivo})}">Crear
-							Medicion</a>
-					</td>
-				</tr>
-			</div>
+			<tr th:each="banio : ${banios}">
+				<td th:text="${banio.idDispositivo}"></td>
+				<td th:text="${banio.name}"></td>
+				<td th:text="${banio.created_at}"></td>
+				<td>
+					<a th:href="@{/medicionBanio/new(idBanio=${banio.idDispositivo})}">Crear Medicion</a>
+				</td>
+			</tr>
 		</tbody>
-	</table>
 
-	<a href="/banio/new" class="btn btn-primary">Crear nuevo baño</a>
+		<a href="/banio/crear" class="btn btn-primary">Crear nuevo baño</a>
 </body>
 
 </html>
