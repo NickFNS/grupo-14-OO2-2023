@@ -25,4 +25,8 @@ public class ViewRouteHelper {
     public final static String ROUTE = "/index";
     public final static String DEGREE_ROOT = "/degrees/";
     public final static String PERSON_ROOT = "/person";
+    
+    // Baños
+    public final static String SHOW_BANIOS = "/banio/show";
+	public final static String FORM_NEW_BANIO = "/banio/newBanioForm";
 }

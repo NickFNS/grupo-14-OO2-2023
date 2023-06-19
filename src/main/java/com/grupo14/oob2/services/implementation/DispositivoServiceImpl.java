@@ -2,6 +2,7 @@ package com.grupo14.oob2.services.implementation;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,11 +32,11 @@ public class DispositivoServiceImpl implements DispositivoService {
 	public List<Dispositivo> getAll() {
 		return dispositivoRepository.findAll();
 	}
-
+	
+	// A desarrollar
 	@Override
 	public Dispositivo insertOrUpdateDispositivo(Dispositivo d) {
-		Dispositivo newDispositivo = dispositivoRepository.save(d);
-		return newDispositivo;
+		return d;
 	}
 
 	@Override
@@ -48,14 +49,14 @@ public class DispositivoServiceImpl implements DispositivoService {
 			return false;
 		}
 	}
-	
-	//BAÑOS:
-	
+
+	// BanioS:
+
 	@Override
 	public List<Banio> findAllBanios() {
 		return dispositivoRepository.findAllBanios();
 	}
-	
+
 	@Override
 	public List<Banio> findBaniosByDate(Date date) {
 		return dispositivoRepository.findBaniosByDate(date);
@@ -70,4 +71,10 @@ public class DispositivoServiceImpl implements DispositivoService {
 	public List<Banio> findBaniosByDateAndName(Date date, String name) {
 		return dispositivoRepository.findBaniosByDateAndName(date, name);
 	}
+
+	@Override
+	public Banio findBanioByIdDispositivo(int idDispositivo) {
+		return dispositivoRepository.findBanioByIdDispositivo(idDispositivo);
+	}
+
 }

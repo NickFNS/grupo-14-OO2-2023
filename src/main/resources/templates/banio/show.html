@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Baños</title>
+
+	<script src="prueba.js"></script>
+
+</head>
+
+<body>
+
+	<h1>Tabla de Baño</h1>
+
+	<form method="GET" action="/banio/show">
+		<label for="fecha">Ingrese una fecha:</label>
+		<input type="date" id="fecha" name="fecha">
+
+		<label for="nombre">Ingrese un nombre:</label>
+		<input type="text" id="nombre" name="nombre">
+
+		<button type="submit">Buscar</button>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>IdDispositivo</th>
+				<th>Name</th>
+				<th>Created_at</th>
+				<th>Places</th>
+				<th>Medicion</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<div id="baniosContainer">
+				<tr th:each="baño : ${banios}">
+					<td th:text="${banio.idDispositivo}"></td>
+					<td th:text="${banio.name}"></td>
+					<td th:text="${banio.created_at}"></td>
+					<td>
+						<a th:href="@{/medicionBanio/new(idBanio=${banio.idDispositivo})}">Crear
+							Medicion</a>
+					</td>
+				</tr>
+			</div>
+		</tbody>
+	</table>
+
+	<a href="/banio/new" class="btn btn-primary">Crear nuevo baño</a>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Create new Banio</title>
+</head>
+
+<body>
+
+	<h1>Create new Banio</h1>
+	<form th:action="@{/banio/create}" method="post" th:object="${banio}">
+
+		<p>Name: <input type="text" th:field="*{name}" /></p>
+
+		<p>Places:</p>
+		<div th:each="place, iter : *{places}">
+			<input type="number" th:field="*{places[__${iter.index}__]}" />
+		</div>
+		<input type="submit" value="Create Banio" />
+
+	</form>
+	
+	<a href="/banio/show" class="btn btn-primary">Ver banios</a>
+</body>
+
+</html>

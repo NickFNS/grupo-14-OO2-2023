@@ -1,6 +1,8 @@
 package com.grupo14.oob2.entities;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
@@ -17,5 +19,8 @@ public class Banio extends Dispositivo {
 
 	@Column(name = "bathroom_number")
 	private int bathroom_number;
+	
+	// Definir Set de días de higienizado u
+	// otra forma de agrupar las ocupaciones de los baños
 
 }
