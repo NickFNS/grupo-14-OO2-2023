@@ -1,8 +1,6 @@
 package com.grupo14.oob2.entities;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;

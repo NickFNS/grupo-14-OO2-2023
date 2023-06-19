@@ -1,6 +1,5 @@
 package com.grupo14.oob2.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +17,7 @@ public class BanioController {
 
 	@Autowired
 	private DispositivoService dispositivoService;
-
-	private ModelMapper modelMapper = new ModelMapper();
-
+	
 	@GetMapping("/show")
 	public String mostrarBanios(Model model) {
 		Iterable<Banio> banios = dispositivoService.findAllBanios();
