@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Eventos de Estacionamientos</title>
-
     <link
       rel="stylesheet"
       type="text/css"
@@ -14,7 +13,7 @@
     <div class="filter_and_form_container">
       <h1>Eventos de Aula</h1>
 
-      <form action="eventosEstacionamientos" method="GET">
+      <form action="eventosAula" method="GET">
         <label for="date">Fecha y Hora:</label>
         <input type="date" id="date" name="date" value="${param.dateTime}" />
 
@@ -59,10 +58,6 @@
           </tr>
         </tbody>
       </table>
-
-      <a href="/estacionamiento/show" class="btn btn-primary"
-        >Estacionamientos</a
-      >
 
       <a href="/evento/todosLosEventos" class="btn btn-primary">Eventos</a>
     </div>
