@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .sector:hover,
+      .numero:hover {
+        background-color: #9336b4;
+        cursor: pointer;
+      }
+
+      body {
+        font-family: "Roboto Mono", monospace;
+        margin: 0;
+        padding: 0;
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100vh;
+        padding: 20px;
+        margin-top: 200px;
+      }
+
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: #444;
+      }
+
+      .sectores {
+        margin-right: 20px;
+        max-width: 300px;
+      }
+
+      .sectores ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 400px; /* Establece una altura máxima para la lista */
+        overflow-y: auto;
+      }
+
+      .sector {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #444;
+      }
+
+      .mapa {
+        flex: 1;
+        max-width: 600px;
+        position: relative;
+      }
+
+      .mapa img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .numero {
+        position: absolute;
+        color: white;
+        font-size: 10px;
+        font-weight: bold;
+        transition: filter 0.3s ease;
+        border-radius: 50%;
+        background-color: #444;
+        padding: 5px;
+        text-align: center;
+      }
+
+      .iluminado {
+        filter: brightness(150%);
+      }
+
+      .backNumero {
+        background-color: #9336b4;
+        filter: brightness(150%);
+      }
+
+      .backSector {
+        background-color: #9336b4;
+      }
+
+      #numero1 {
+        top: 130px;
+        left: 369px;
+      }
+
+      #numero2 {
+        top: 180px;
+        right: 250px;
+      }
+
+      #numero3 {
+        bottom: 290px;
+        left: 64%;
+        transform: translateX(-50%);
+      }
+
+      #numero4 {
+        top: 180px;
+        right: 26.8%;
+        transform: translateX(50%);
+      }
+
+      #numero5 {
+        bottom: 350px;
+        right: 90px;
+      }
+
+      #numero6 {
+        bottom: 350px;
+        right: 60px;
+      }
+
+      #numero7 {
+        bottom: 350px;
+        right: 35px;
+      }
+
+      #numero8 {
+        top: 225px;
+        left: 310px;
+      }
+
+      #numero9 {
+        top: 221px;
+        left: 362px;
+      }
+
+      #numero10 {
+        top: 220px;
+        left: 465px;
+      }
+
+      #numero11 {
+        top: 310px;
+        left: 425px;
+      }
+
+      #numero12 {
+        top: 350px;
+        left: 422px;
+      }
+
+      #numero13 {
+        bottom: 70px;
+        left: 72.5%;
+        transform: translateX(-50%);
+      }
+
+      #numero14 {
+        top: 410px;
+        right: 40%;
+        transform: translateX(50%);
+      }
+
+      #numero15 {
+        bottom: 50px;
+        right: 250px;
+      }
+
+      #numero16 {
+        bottom: 40px;
+        right: 298px;
+      }
+
+      #numero17 {
+        top: 375px;
+        left: 220px;
+      }
+
+      #numero18 {
+        top: 418px;
+        left: 185px;
+      }
+
+      #numero19 {
+        top: 420px;
+        left: 105px;
+      }
+      #numero20 {
+        top: 390px;
+        left: 100px;
+      }
+      #numero21 {
+        top: 335px;
+        left: 150px;
+      }
+
+      #numero22 {
+        top: 300px;
+        left: 150px;
+      }
+
+      #numero23 {
+        bottom: 210px;
+        left: 30%;
+        transform: translateX(-50%);
+      }
+
+      #numero24 {
+        top: 235px;
+        right: 69%;
+        transform: translateX(50%);
+      }
+
+      #numero25 {
+        bottom: 260px;
+        right: 415px;
+      }
+
+      #numero26 {
+        top: 200px;
+        left: 255px;
+      }
+
+      #numero27 {
+        top: 180px;
+        left: 255px;
+      }
+
+      #numero28 {
+        top: 250px;
+        left: 380px;
+      }
+
+      /* Estilos personalizados para el scroll */
+      .sectores ul::-webkit-scrollbar {
+        width: 6px; /* Ancho del scrollbar */
+        background-color: #f5f5f5; /* Color de fondo del scrollbar */
+      }
+
+      .sectores ul::-webkit-scrollbar-thumb {
+        background-color: #888; /* Color del thumb del scrollbar */
+        border-radius: 3px; /* Borde redondeado del thumb */
+      }
+
+      .sectores ul::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Color del thumb al pasar el cursor sobre él */
+      }
+
+      .sectores ul::-webkit-scrollbar-track {
+        background-color: #f5f5f5; /* Color de fondo del track del scrollbar */
+      }
+
+      /* Ajustar estilos en caso de navegadores que no sean WebKit */
+      .sectores ul {
+        scrollbar-width: thin; /* Ancho del scrollbar */
+        scrollbar-color: #888 #f5f5f5; /* Color del thumb y del track del scrollbar */
+      }
+
+      .sectores ul:hover {
+        scrollbar-color: #555 #f5f5f5; /* Color del thumb al pasar el cursor sobre él */
+      }
+
+      @media screen and (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .sectores {
+          margin-right: 0;
+          margin-bottom: 20px;
+          max-width: none;
+        }
+
+        .mapa {
+          margin-top: 20px;
+        }
+
+        .numero {
+          font-size: 8px;
+          padding: 3px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sectores">
+        <h2 class="title">Selecciona tu sector</h2>
+        <ul>
+          <li
+            class="sector"
+            th:each="sector : ${sectores}"
+            th:id="'sector' + ${sector.idSector}"
+            th:onmouseover="'iluminarSector(' + ${sector.idSector} + ')'"
+            th:onmouseout="'apagarSector(' + ${sector.idSector} + ')'"
+            th:href="@{sectores/{id}(id=${sector.idSector})}"
+            th:text="${sector.idSector + ' - ' + sector.name}"
+          ></li>
+        </ul>
+      </div>
+      <div class="mapa">
+        <h2 class="title">Mapa de la universidad</h2>
+        <img
+          th:src="@{/img/Plano_UNLa.jpg}"
+          src="static/img/Plano_UNLa.jpg"
+          alt="Mapa de la universidad"
+        />
+        <a
+          class="numero"
+          th:each="sector : ${sectores}"
+          th:id="'numero' + ${sector.idSector}"
+          th:onmouseover="'iluminarNumero(' + ${sector.idSector} + ')'"
+          th:onmouseout="'apagarNumero(' + ${sector.idSector} + ')'"
+          th:href="@{sectores/{id}(id=${sector.idSector})}"
+          th:text="${sector.idSector}"
+        ></a>
+      </div>
+    </div>
+
+    <script>
+      function iluminarNumero(numero) {
+        var numeroElemento = document.getElementById("numero" + numero);
+        numeroElemento.classList.add("iluminado");
+        var numeroSector = document.getElementById("sector" + numero);
+        numeroSector.classList.add("backSector");
+      }
+
+      function apagarNumero(numero) {
+        var numeroElemento = document.getElementById("numero" + numero);
+        numeroElemento.classList.remove("iluminado");
+        var numeroSector = document.getElementById("sector" + numero);
+        numeroSector.classList.remove("backSector");
+      }
+
+      function iluminarSector(numero) {
+        var numeroSector = document.getElementById("sector" + numero);
+        numeroSector.classList.add("iluminado");
+        var numeroSector = document.getElementById("numero" + numero);
+        numeroSector.classList.add("backNumero");
+      }
+
+      function apagarSector(numero) {
+        var numeroSector = document.getElementById("sector" + numero);
+        numeroSector.classList.remove("iluminado");
+        var numeroSector = document.getElementById("numero" + numero);
+        numeroSector.classList.remove("backNumero");
+      }
+
+      function redireccionar(pagina) {
+        window.location.href = pagina;
+      }
+    </script>
+  </body>
+</html>
