@@ -1,5 +1,6 @@
 package com.grupo14.oob2.services.implementation;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,27 +35,30 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.findAll();
 	}
 
-
 	// TODO: Verificar que funcione bien el agregar.
 	public Dispositivo insertOrUpdateEstacionamiento(Dispositivo d) {
 		if (d instanceof Estacionamiento) {
 			Estacionamiento estacionamiento = (Estacionamiento) d;
-			if (estacionamiento.getIdDispositivo() != 0) {
-				// El estacionamiento tiene un ID distinto de cero, lo que indica que ya existe
-				// en la base de datos
-				Optional<Dispositivo> existingDispositivo = dispositivoRepository
-						.findById(estacionamiento.getIdDispositivo());
-				if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Estacionamiento) {
-					// Actualizar el estacionamiento existente con los valores del estacionamiento
-					// pasado como parámetro
-					Estacionamiento existingEstacionamiento = (Estacionamiento) existingDispositivo.get();
-					existingEstacionamiento.setPlaces(estacionamiento.getPlaces());
-					// Actualiza otros campos si es necesario
-					// ...
-					// Guardar el estacionamiento actualizado en la base de datos
-					Dispositivo savedDispositivo = dispositivoRepository.save(existingEstacionamiento);
-					return savedDispositivo;
-				}
+//			if (estacionamiento.getIdDispositivo() != 0) {
+//				// El estacionamiento tiene un ID distinto de cero, lo que indica que ya existe
+//				// en la base de datos
+//				Optional<Dispositivo> existingDispositivo = dispositivoRepository
+//						.findById(estacionamiento.getIdDispositivo());
+//				if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Estacionamiento) {
+//					// Actualizar el estacionamiento existente con los valores del estacionamiento
+//					// pasado como parámetro
+//					Estacionamiento existingEstacionamiento = (Estacionamiento) existingDispositivo.get();
+//					existingEstacionamiento.setPlaces(estacionamiento.getPlaces());
+//					// Actualiza otros campos si es necesario
+//					// ...
+//					// Guardar el estacionamiento actualizado en la base de datos
+//					Dispositivo savedDispositivo = dispositivoRepository.save(existingEstacionamiento);
+//					return savedDispositivo;
+//				}
+//			}
+			List<Estacionamiento> estacionamientos = dispositivoRepository.findAllEstacionamientos();
+			if (estacionamientos.contains(estacionamiento)) {
+				estacionamiento.setUpdated_at(LocalDateTime.now());
 			}
 		}
 		// El estacionamiento no existe en la base de datos, crear uno nuevo
@@ -63,25 +67,19 @@ public class DispositivoServiceImpl implements DispositivoService {
 	}
 
 	@Override
-	public boolean removeByIdDispositivo(int idDispositivo) {
-		try {
-			// Cambiar esto a que en vez de eliminarlo, lo "inactive", la baja tiene que ser
-			// Logica.
-			dispositivoRepository.deleteById(idDispositivo);
-			return true;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
+	public void removeByIdDispositivo(int idDispositivo) {
+		Dispositivo d = dispositivoRepository.findById(idDispositivo);
+		d.setEnabled(false);
+		dispositivoRepository.save(d);
 	}
 
-	
-	//ESTACIONAMIENTOS: 
-	
+	// ESTACIONAMIENTOS:
+
 	@Override
 	public List<Estacionamiento> FindAllEstacionamiento() {
 		return dispositivoRepository.findAllEstacionamientos();
 	}
+
 	// Changed LocalDate to Date.
 	@Override
 	public List<Estacionamiento> findEstacionamientosByDate(Date date) {

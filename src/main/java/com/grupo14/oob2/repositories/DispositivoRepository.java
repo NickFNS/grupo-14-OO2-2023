@@ -15,7 +15,8 @@ import org.springframework.stereotype.Repository;
 public interface DispositivoRepository extends JpaRepository<Dispositivo, Integer> {
 
 	// TODO: Revisar si se puede hacer con JPA O Scrud Repository
-
+	Dispositivo findById(int idDispositivo);
+	
 	// Estacionamiento
 	@Query("SELECT e FROM Estacionamiento e WHERE e.idDispositivo =(:idDispositivo)")
 	Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo);

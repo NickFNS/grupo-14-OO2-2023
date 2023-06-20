@@ -68,7 +68,16 @@ public class EstacionamientoController {
 			estacionamientos = dispositivoService.FindAllEstacionamiento();
 		}
 
-		mV.addObject("estacionamientos", estacionamientos);
+		// Filtrado por enabled:
+		List<Estacionamiento> listaEnabled = new ArrayList<Estacionamiento>();
+		for (Estacionamiento e : estacionamientos) {
+			if (e.isEnabled() == true) {
+				listaEnabled.add(e);
+			}
+		}
+
+		mV.addObject("estacionamientos", listaEnabled);
+		// mV.addObject("estacionamientos", estacionamientos);
 		return mV;
 	}
 
@@ -82,6 +91,14 @@ public class EstacionamientoController {
 
 		mV.addObject("estacionamiento", estacionamiento);
 		return mV;
+	}
+
+	// @PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/delete")
+	public RedirectView delete(@RequestParam("idEstacionamiento") int estacionamientoId) {
+		// Lógica para dar de baja el estacionamiento con el ID proporcionado
+		dispositivoService.removeByIdDispositivo(estacionamientoId);
+		return new RedirectView(ViewRouteHelper.SHOW_ESTACIONAMIENTOS);
 	}
 
 	// @PreAuthorize("hasRole('ROLE_ADMIN')")

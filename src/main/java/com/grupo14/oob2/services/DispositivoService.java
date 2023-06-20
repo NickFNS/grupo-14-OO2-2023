@@ -18,7 +18,7 @@ public interface DispositivoService {
 
 	public Dispositivo insertOrUpdateEstacionamiento(Dispositivo d);
 
-	public abstract boolean removeByIdDispositivo(int idDispositivo);
+	public abstract void removeByIdDispositivo(int idDispositivo);
 
 	// ESTACIONAMIENTO:
 	@ModelAttribute("estacionamiento")
