@@ -64,10 +64,13 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+<<<<<<< HEAD
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 		</dependency>
 		<dependency>
+=======
+>>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 			<groupId>org.modelmapper.extensions</groupId>
 			<artifactId>modelmapper-spring</artifactId>
 			<version>3.0.0</version>
@@ -90,5 +93,5 @@
 			</plugin>
 		</plugins>
 	</build>
-<!-- Prueba commit Facu -->
+	<!-- Prueba commit Facu -->
 </project>

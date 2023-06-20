@@ -48,7 +48,10 @@ public abstract class Dispositivo {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
 	protected Set<Evento> eventos = new HashSet<Evento>();
 
+<<<<<<< HEAD
 	// TODO: Revisar que no funciona el Lombok
+=======
+>>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 	public int getIdDispositivo() {
 		return idDispositivo;
 	}
@@ -104,5 +107,8 @@ public abstract class Dispositivo {
 	public void setEventos(Set<Evento> eventos) {
 		this.eventos = eventos;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 }

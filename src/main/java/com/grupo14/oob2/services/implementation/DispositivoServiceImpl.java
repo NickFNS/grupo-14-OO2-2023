@@ -1,6 +1,9 @@
 package com.grupo14.oob2.services.implementation;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
+=======
+>>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +11,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grupo14.oob2.entities.Banio;
 import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.entities.Estacionamiento;
 import com.grupo14.oob2.repositories.DispositivoRepository;
@@ -24,7 +28,6 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.getById(idDispositivo);
 	}
 
-	// A revisar
 	@Override
 	public List<Dispositivo> findByTipoDesc(String tipo) {
 		return null;
@@ -35,6 +38,7 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.findAll();
 	}
 
+<<<<<<< HEAD
 	// TODO: Verificar que funcione bien el agregar.
 	public Dispositivo insertOrUpdateEstacionamiento(Dispositivo d) {
 		if (d instanceof Estacionamiento) {
@@ -62,11 +66,30 @@ public class DispositivoServiceImpl implements DispositivoService {
 			}
 		}
 		// El estacionamiento no existe en la base de datos, crear uno nuevo
+=======
+	// A desarrollar
+	@Override
+	public Dispositivo insertOrUpdateBanio(Dispositivo d) {
+		if (d instanceof Banio) {
+			Banio Banio = (Banio) d;
+			if (Banio.getIdDispositivo() != 0) {
+				Optional<Dispositivo> existingDispositivo = dispositivoRepository
+						.findById(Banio.getIdDispositivo());
+				if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Banio) {
+					Banio existingBanio = (Banio) existingDispositivo.get();
+					existingBanio.setBathroom_number(Banio.getBathroom_number());
+					Dispositivo savedDispositivo = dispositivoRepository.save(existingBanio);
+					return savedDispositivo;
+				}
+			}
+		}
+>>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 		Dispositivo newDispositivo = dispositivoRepository.save(d);
 		return newDispositivo;
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void removeByIdDispositivo(int idDispositivo) {
 		Dispositivo d = dispositivoRepository.findById(idDispositivo);
 		d.setEnabled(false);
@@ -98,6 +121,43 @@ public class DispositivoServiceImpl implements DispositivoService {
 	@Override
 	public Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo) {
 		return dispositivoRepository.findEstacionamientoByIdDispositivo(idDispositivo);
+=======
+	public boolean removeByIdDispositivo(int idDispositivo) {
+		try {
+			dispositivoRepository.deleteById(idDispositivo);
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+>>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
+	}
+
+	// BanioS:
+
+	@Override
+	public List<Banio> findAllBanios() {
+		return dispositivoRepository.findAllBanios();
+	}
+
+	@Override
+	public List<Banio> findBaniosByDate(Date date) {
+		return dispositivoRepository.findBaniosByDate(date);
+	}
+
+	@Override
+	public List<Banio> findBaniosByName(String name) {
+		return dispositivoRepository.findBaniosByName(name);
+	}
+
+	@Override
+	public List<Banio> findBaniosByDateAndName(Date date, String name) {
+		return dispositivoRepository.findBaniosByDateAndName(date, name);
+	}
+
+	@Override
+	public Banio findBanioByIdDispositivo(int idDispositivo) {
+		return dispositivoRepository.findBanioByIdDispositivo(idDispositivo);
 	}
 
 }
