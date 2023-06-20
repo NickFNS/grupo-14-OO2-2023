@@ -1,0 +1,45 @@
+.filter_and_form_container{
+	border-radius: 10px;
+	padding: 15px;
+	background-color: beige;
+	font-family: sans-serif;
+	
+	display: grid;
+	place-items: center;
+	
+}
+
+.table_content{
+	background-color: white;
+	border-collapse: collapse;
+	margin: 25px 0;
+	font-size: 0.9em;
+	min-width: 400px;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table_content thead tr{
+	background-color: rgb(141, 14, 14);
+	color: white;
+	text-align: left;
+	font-weight: bold;
+}
+
+.table_content th, .table_content td{
+	padding: 12px 15px;
+	
+}
+
+.table_content tbody tr{
+	border-bottom: 1px solid rgb(209, 209, 209);
+}
+
+.table_content tbody tr:nth-of-type(even){
+	background-color: rgb(239, 239, 239);
+}
+
+.table_content tbody tr:last-of-type{
+	border-bottom: 2px solid rgb(141, 14, 14);
+}

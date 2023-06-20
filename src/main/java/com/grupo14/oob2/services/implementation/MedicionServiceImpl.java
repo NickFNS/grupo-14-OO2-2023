@@ -1,17 +1,14 @@
 package com.grupo14.oob2.services.implementation;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grupo14.oob2.entities.Estacionamiento;
-import com.grupo14.oob2.entities.Evento;
 import com.grupo14.oob2.entities.Medicion;
 import com.grupo14.oob2.entities.MedicionEstacionamiento;
 import com.grupo14.oob2.repositories.MedicionRepository;
-import com.grupo14.oob2.services.EventoService;
 import com.grupo14.oob2.services.MedicionService;
 
 @Service
@@ -19,9 +16,6 @@ public class MedicionServiceImpl implements MedicionService {
 
 	@Autowired
 	private MedicionRepository medicionRepository;
-	
-	@Autowired
-	private EventoService eventoService;
 
 	@Override
 	public Medicion findByIdMedicion(int idMedicion) {
@@ -65,9 +59,8 @@ public class MedicionServiceImpl implements MedicionService {
 	}
 
 	@Override
-    public List<MedicionEstacionamiento> getUltimaMedicionEstacionamiento(Estacionamiento estacionamiento) {
-        return medicionRepository.findUltimaMedicionEstacionamiento(estacionamiento);
-    }
-	
+	public List<MedicionEstacionamiento> getUltimaMedicionEstacionamiento(Estacionamiento estacionamiento) {
+		return medicionRepository.findUltimaMedicionEstacionamiento(estacionamiento);
+	}
 
 }
