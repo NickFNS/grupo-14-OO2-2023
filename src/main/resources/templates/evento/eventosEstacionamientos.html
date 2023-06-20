@@ -3,44 +3,55 @@
 
 <head>
 	<title>Eventos de Estacionamientos</title>
+
+	<link rel="stylesheet" type="text/css" href="../estilosEstacionamiento.css">
+
 </head>
 
 <body>
-	<h1>Eventos de Estacionamientos</h1>
 
-	<form action="eventosEstacionamientos" method="GET">
-		<label for="date">Fecha y Hora:</label>
-		<input type="date" id="date" name="date" value="${param.dateTime}">
+	<div class="filter_and_form_container">
 
-		<label for="idDispositivo">ID Dispositivo:</label>
-		<input type="number" id="idDispositivo" name="idDispositivo" value="${param.idDispositivo}">
+		<h1>Eventos de Estacionamientos</h1>
 
-		<label for="description">Descripción:</label>
-		<input type="text" id="description" name="description" th:value="${param.description}">
+		<form action="eventosEstacionamientos" method="GET">
+			<label for="date">Fecha y Hora:</label>
+			<input type="date" id="date" name="date" value="${param.dateTime}">
 
-		<input type="submit" value="Buscar">
-	</form>
+			<label for="idDispositivo">ID Dispositivo:</label>
+			<input type="number" id="idDispositivo" name="idDispositivo" value="${param.idDispositivo}">
 
-	<table>
-		<tr>
-			<th>ID Evento</th>
-			<th>Dispositivo ID</th>
-			<th>Dispositivo Nombre</th>
-			<th>Descripción</th>
-			<th>Fecha y Hora</th>
-		</tr>
+			<label for="description">Descripción:</label>
+			<input type="text" id="description" name="description" th:value="${param.description}">
 
-		<!-- Iterar sobre los eventos y mostrarlos en filas de la tabla -->
-		<tr th:each="evento : ${eventos}">
-			<td th:text="${evento.idEvento}"></td>
-			<td th:text="${evento.dispositivo.idDispositivo}"></td>
-			<td th:text="${evento.dispositivo.name}"></td>
-			<td th:text="${evento.description}"></td>
-			<td th:text="${evento.dateTime}"></td>
-		</tr>
-	</table>
+			<input type="submit" value="Buscar">
+		</form>
 
-	<a href="/estacionamiento/show" class="btn btn-primary">Volver</a>
+		<table class="table_content">
+			<thead>
+				<tr>
+					<th>ID Evento</th>
+					<th>Dispositivo ID</th>
+					<th>Dispositivo Nombre</th>
+					<th>Descripción</th>
+					<th>Fecha y Hora</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<!-- Iterar sobre los eventos y mostrarlos en filas de la tabla -->
+				<tr th:each="evento : ${eventos}">
+					<td th:text="${evento.idEvento}"></td>
+					<td th:text="${evento.dispositivo.idDispositivo}"></td>
+					<td th:text="${evento.dispositivo.name}"></td>
+					<td th:text="${evento.description}"></td>
+					<td th:text="${evento.dateTime}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="/estacionamiento/show" class="btn btn-primary">Volver</a>
+	</div>
 
 </body>
 

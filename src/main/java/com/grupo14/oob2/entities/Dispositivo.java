@@ -42,6 +42,9 @@ public abstract class Dispositivo {
 	@UpdateTimestamp
 	protected LocalDateTime updated_at;
 
+	//ManyToOne()
+	//protected Sector sector();
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
 	protected Set<Evento> eventos = new HashSet<Evento>();
 

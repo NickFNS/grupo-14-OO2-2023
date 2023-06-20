@@ -80,7 +80,6 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.findAllEstacionamientos();
 	}
 
-	// Changed LocalDate to Date.
 	@Override
 	public List<Estacionamiento> findEstacionamientosByDate(Date date) {
 		return dispositivoRepository.findEstacionamientosByDate(date);

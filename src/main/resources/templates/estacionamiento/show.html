@@ -5,60 +5,68 @@
 	<meta charset="UTF-8">
 	<title>Estacionamientos</title>
 
+	<link rel="stylesheet" type="text/css" href="../estilosEstacionamiento.css">
+
 </head>
 
 <body>
 
-	<h1>Tabla de Estacionamiento</h1>
+	<div class="filter_and_form_container">
 
-	<form method="GET" action="/estacionamiento/show">
-		<label for="fecha">Ingrese una fecha:</label>
-		<input type="date" id="fecha" name="fecha">
+		<h1>Tabla de Estacionamiento</h1>
 
-		<label for="nombre">Ingrese un nombre:</label>
-		<input type="text" id="nombre" name="nombre">
+		<form method="GET" action="/estacionamiento/show">
+			<label for="fecha">Ingrese una fecha:</label>
+			<input type="date" id="fecha" name="fecha">
 
-		<button type="submit">Buscar</button>
-	</form>
+			<label for="nombre">Ingrese un nombre:</label>
+			<input type="text" id="nombre" name="nombre">
 
-	<table>
-		<thead>
-			<tr>
-				<th>IdDispositivo</th>
-				<th>Name</th>
-				<th>Created_at</th>
-				<th>Medicion</th>
-				<th>Dar de baja</th>
-			</tr>
-		</thead>
+			<button type="submit">Buscar</button>
+		</form>
 
-		<tbody>
-			<div id="estacionamientosContainer">
-				<tr th:each="estacionamiento : ${estacionamientos}">
-					<td th:text="${estacionamiento.idDispositivo}"></td>
-					<td th:text="${estacionamiento.name}"></td>
-					<td th:text="${estacionamiento.created_at}"></td>
-					<td>
-						<form th:action="@{/medicionEstacionamiento/create}" method="post">
-							<input type="hidden" name="idEstacionamiento" th:value="${estacionamiento.idDispositivo}" />
-							<button type="submit">Crear Medicion</button>
-						</form>
-					</td>
-					<td>
-						<form th:action="@{/estacionamiento/delete}" method="post">
-							<input type="hidden" name="idEstacionamiento" th:value="${estacionamiento.idDispositivo}" />
-							<button type="submit">Dar de baja</button>
-						</form>
-					</td>
-
+		<table class="table_content">
+			<thead>
+				<tr>
+					<th>IdDispositivo</th>
+					<th>Name</th>
+					<th>Created_at</th>
+					<th>Medicion</th>
+					<th>Dar de baja</th>
 				</tr>
-			</div>
-		</tbody>
-	</table>
+			</thead>
 
-	<a href="/estacionamiento/new" class="btn btn-primary">Crear nuevo estacionamiento</a>
-	<hr>
-	<a href="/evento/eventosEstacionamientos" class="btn btn-primary">Mostrar eventos</a>
+			<tbody>
+				<div id="estacionamientosContainer">
+					<tr th:each="estacionamiento : ${estacionamientos}">
+						<td th:text="${estacionamiento.idDispositivo}"></td>
+						<td th:text="${estacionamiento.name}"></td>
+						<td th:text="${estacionamiento.created_at}"></td>
+						<td>
+							<form th:action="@{/medicionEstacionamiento/create}" method="post">
+								<input type="hidden" name="idEstacionamiento"
+									th:value="${estacionamiento.idDispositivo}" />
+								<button type="submit">Crear Medicion</button>
+							</form>
+						</td>
+						<td>
+							<form th:action="@{/estacionamiento/delete}" method="post">
+								<input type="hidden" name="idEstacionamiento"
+									th:value="${estacionamiento.idDispositivo}" />
+								<button type="submit">Dar de baja</button>
+							</form>
+						</td>
+
+					</tr>
+				</div>
+			</tbody>
+		</table>
+
+		<a href="/estacionamiento/new" class="btn btn-primary">Crear nuevo estacionamiento</a>
+		<hr>
+		<a href="/evento/eventosEstacionamientos" class="btn btn-primary">Mostrar eventos</a>
+
+	</div>
 
 </body>
 
