@@ -28,6 +28,9 @@ public interface EventoService {
 
 	List<Evento> findByTypeAndDateAndDispositivoIdOrderByIdEventoDesc(String type, Date date, int idDispositivo);
 
+	List<Evento> findByTypeAndDateAndDescriptionContainingOrderByIdEventoDesc(String type, Date date,
+			String description);
+
 	List<Evento> findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(String type, int idDispositivo,
 			String description);
 

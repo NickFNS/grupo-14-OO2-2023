@@ -45,6 +45,9 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
 	List<Evento> findByTypeAndDateAndDispositivoIdOrderByIdEventoDesc(@Param("type") String type,
 			@Param("date") Date date, @Param("idDispositivo") int idDispositivo);
 
+	@Query("SELECT e FROM Evento e WHERE e.dispositivo.type = :type AND DATE(e.dateTime) = :date AND e.description LIKE %:description% ORDER BY e.idEvento DESC")
+	List<Evento> findByTypeAndDateAndDescriptionContainingOrderByIdEventoDesc(@Param("type")String type, @Param("date") Date date, @Param("description") String description);
+	
 	@Query("SELECT e FROM Evento e WHERE e.dispositivo.type = :type AND e.dispositivo.idDispositivo = :idDispositivo AND e.description LIKE %:description% ORDER BY e.idEvento DESC")
 	List<Evento> findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(@Param("type") String type,
 			@Param("idDispositivo") int idDispositivo, @Param("description") String description);

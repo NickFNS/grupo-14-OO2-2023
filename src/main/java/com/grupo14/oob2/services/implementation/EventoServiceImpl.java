@@ -86,6 +86,12 @@ public class EventoServiceImpl implements EventoService {
 	}
 
 	@Override
+	public List<Evento> findByTypeAndDateAndDescriptionContainingOrderByIdEventoDesc(String type, Date date,
+			String description) {
+		return eventoRepository.findByTypeAndDateAndDescriptionContainingOrderByIdEventoDesc(type, date, description);
+	}
+
+	@Override
 	public List<Evento> findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(String type, int idDispositivo, String description) {
 		return eventoRepository.findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type,idDispositivo, description);
 	}
@@ -94,6 +100,7 @@ public class EventoServiceImpl implements EventoService {
 	public List<Evento> findByTypeAndDateOrderByIdEventoDesc(String type, Date date) {
 		return eventoRepository.findByTypeAndDateOrderByIdEventoDesc(type, date);
 	}
+
 
 	
 }

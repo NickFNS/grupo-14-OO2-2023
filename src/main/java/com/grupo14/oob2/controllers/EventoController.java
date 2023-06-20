@@ -66,7 +66,13 @@ public class EventoController {
 		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
 	}
 
+	@GetMapping("/todosLosEventos")
+	public String mostrarTodosLosEventos(Model model) {
+		List<Evento> eventos = eventoService.getAll();
+		model.addAttribute("eventos", eventos);
+		return ViewRouteHelper.SHOW_EVENTOS;
 }
+	}
 
 /*
  * @GetMapping("/eventosEstacionamientos") public String
