@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Lista de Tarjetas</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilos generales */
+      body {
+        background-color: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Roboto Mono", monospace;
+        color: #fff;
+      }
+
+      .container {
+        max-width: 800px;
+        text-align: center;
+      }
+
+      h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      tr:nth-child(even) {
+        background-color: #555;
+      }
+
+      .button {
+        padding: 5px 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-bottom: 8px;
+      }
+
+      .button:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Table de dispositivos Aulas</h2>
+      <a href="/aula/dashboard/abm/aulaCreate" class="button"
+        >Crear Dispositivo Aula</a
+      >
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Enabled</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="daula : ${dAulas}">
+            <td th:text="${daula.idDispositivo}"></td>
+            <td th:text="${daula.name}"></td>
+            <td th:text="${daula.type}"></td>
+            <td th:text="${daula.enabled}"></td>
+            <td>
+              <a
+                th:href="@{/aula/dashboard/abm/aulaUpdate/{id}(id=${daula.idDispositivo})}"
+                class="button"
+                >Editar</a
+              >
+              <a
+                th:href="@{/medicionAula/create/{id}(id=${daula.idDispositivo})}"
+                class="button"
+                >Crear Nueva Medicion</a
+              >
+              <a
+                th:href="@{/aula/dashboard/abm/aulaDelete/{id}(id=${daula.idDispositivo})}"
+                class="button"
+                >Eliminar</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

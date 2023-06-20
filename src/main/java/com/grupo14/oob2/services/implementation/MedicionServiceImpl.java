@@ -2,10 +2,10 @@ package com.grupo14.oob2.services.implementation;
 
 import java.util.List;
 
+import com.grupo14.oob2.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.grupo14.oob2.entities.Medicion;
 import com.grupo14.oob2.repositories.MedicionRepository;
 import com.grupo14.oob2.services.MedicionService;
 
@@ -31,7 +31,7 @@ public class MedicionServiceImpl implements MedicionService {
 	}
 
 	@Override
-	public Medicion insertOrUpdateMedicion(Medicion m) {
+	public Medicion insertOrUpdate(Medicion m) {
 		Medicion newMedicion = medicionRepository.save(m);
 		// return modelMapper.map(newMedicion, MedicionModel.class);
 		return newMedicion;
@@ -48,6 +48,28 @@ public class MedicionServiceImpl implements MedicionService {
 			System.out.println(e.getMessage());
 			return false;
 		}
+	}
+
+	// ESTACIONAMIENTO
+	@Override
+	public List<MedicionEstacionamiento> getAllMedicionEstacionamiento() {
+		return medicionRepository.getAllMedicionEstacionamiento();
+	}
+
+	@Override
+	public List<MedicionEstacionamiento> getUltimaMedicionEstacionamiento(Estacionamiento estacionamiento) {
+		return medicionRepository.findUltimaMedicionEstacionamiento(estacionamiento);
+	}
+
+	// Aula
+	@Override
+	public List<MedicionDAula> getAllMedicionDAula() {
+		return medicionRepository.getAllMedicionDAula();
+	}
+
+	@Override
+	public List<MedicionDAula> getUltimaMedicionDAulao(DAula daula) {
+		return medicionRepository.findUltimaMedicionDAula(daula);
 	}
 
 }

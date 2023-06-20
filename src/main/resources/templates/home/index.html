@@ -62,6 +62,7 @@
     <meta name="theme-color" content="#712cf9" />
     <link href="product.css" rel="stylesheet" />
   </head>
+
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -169,9 +170,13 @@
                 /></a>
               </li>
 
-              <li class="nav-item"><a class="nav-link" href="#">Aula</a></li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Espacios Verdes</a>
+                <a class="nav-link" href="/aula/dashboard">Aula</a>
+              </li>
+              <li class="nav-item">
+                <a type="button" class="btn btn-danger" href="/logout"
+                  >Logout</a
+                >
               </li>
             </ul>
           </div>
@@ -186,7 +191,13 @@
         <div class="col-md-6 p-lg-5 mx-auto my-5">
           <h1 class="display-3 fw-bold">Smart City</h1>
           <h3 class="fw-normal text-muted mb-3">Sistema de Dispositivos</h3>
-          <a type="button" class="btn btn-primary" href="login"> Login </a>
+          <a
+            type="button"
+            class="btn btn-primary"
+            href="evento/todosLosEventos"
+          >
+            Eventos
+          </a>
         </div>
         <div class="product-device shadow-sm d-none d-md-block"></div>
         <div
@@ -199,12 +210,11 @@
             class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
           >
             <div class="my-3 py-3">
-              <h2 class="display-5">Estacionamiento</h2>
-              <p class="lead">And an even wittier subheading.</p>
+              <h2 class="display-5">Estacionamientos</h2>
             </div>
             <div
               class="bg-body-tertiary shadow-sm mx-auto"
-              style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+              style="width: 300px; height: 300px; border-radius: 21px 21px 0 0"
             ></div>
           </div>
         </div>
@@ -215,29 +225,36 @@
           >
             <div class="my-3 py-3">
               <h2 class="display-5">Baños</h2>
-              <p class="lead">And an even wittier subheading.</p>
             </div>
             <div
               class="bg-body-tertiary shadow-sm mx-auto"
-              style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+              style="width: 300px; height: 300px; border-radius: 21px 21px 0 0"
             ></div>
           </div>
         </div>
 
-        <div class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3">
+        <a
+          class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3"
+          href="/aula/dashboard"
+        >
           <div
             class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
           >
             <div class="my-3 py-3">
               <h2 class="display-5">Aulas</h2>
-              <p class="lead">And an even wittier subheading.</p>
             </div>
             <div
               class="bg-body-tertiary shadow-sm mx-auto"
               style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
-            ></div>
+            >
+              <img
+                src="https://www.prosegur.com/dam/jcr:d8445cee-7009-4a37-913f-2d007e25fc78/FOTOAULASINNOVACION.png"
+                alt="Descripción de la imagen"
+                style="width: 100%; height: 300px; border-radius: 21px 21px 0 0"
+              />
+            </div>
           </div>
-        </div>
+        </a>
 
         <div class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3">
           <div

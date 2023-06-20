@@ -23,10 +23,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userServiceImpl).passwordEncoder(passwordEncoder());
     }
 
+    String[] resources = new String[]{
+            "/include/**","/css/**","/img/**"
+    };
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers(resources).permitAll()
                 .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and() .formLogin() .loginPage("/login").loginProcessingUrl("/loginprocess")
@@ -34,7 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/index").permitAll()
                 .and()
                 .logout()
-                .permitAll().logoutSuccessUrl("/logout");
+                .logoutUrl("/logout") // Especifica la URL de logout
+                .logoutSuccessUrl("/login") // URL a la que se redirige después del logout exitoso
+                .invalidateHttpSession(true) // Invalida la sesión HTTP existente
+                .deleteCookies("JSESSIONID") // Elimina las cookies específicas (en este caso, JSESSIONID)
+                .permitAll();
     }
 
     @Bean

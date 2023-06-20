@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Lista de Tarjetas</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilos generales */
+      body {
+        background-color: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Roboto Mono", monospace;
+        color: #fff;
+      }
+
+      .container {
+        max-width: 800px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .card-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
+
+      .card {
+        background-color: #333;
+        color: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        margin: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transform-style: preserve-3d;
+        transform: perspective(1000px);
+        transition: transform 0.3s ease-out;
+      }
+
+      .card:hover {
+        transform: perspective(1000px) rotateY(10deg);
+      }
+
+      .card h2 {
+        font-size: 24px;
+        margin: 0;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 16px;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 th:text="'Lista de dispositivos - Sector '+${sector.name}"></h2>
+      <div class="card-list">
+        <div th:each="daula : ${Daulas}" class="card">
+          <h2 th:text="${daula.name}"></h2>
+          <p th:text="'Type: '+${daula.type}"></p>
+          <p th:text="'Enabled: '+${daula.enabled}"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

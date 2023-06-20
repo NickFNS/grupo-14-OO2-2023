@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Eventos de Estacionamientos</title>
+
+	<link rel="stylesheet" type="text/css" href="../estilosEstacionamiento.css">
+
+</head>
+
+<body>
+
+	<div class="filter_and_form_container">
+
+		<h1>Eventos de Estacionamientos</h1>
+
+		<form action="eventosEstacionamientos" method="GET">
+			<label for="date">Fecha y Hora:</label>
+			<input type="date" id="date" name="date" value="${param.dateTime}">
+
+			<label for="idDispositivo">ID Dispositivo:</label>
+			<input type="number" id="idDispositivo" name="idDispositivo" value="${param.idDispositivo}">
+
+			<label for="description">Descripción:</label>
+			<input type="text" id="description" name="description" th:value="${param.description}">
+
+			<input type="submit" value="Buscar">
+		</form>
+
+		<table class="table_content">
+			<thead>
+				<tr>
+					<th>ID Evento</th>
+					<th>Dispositivo ID</th>
+					<th>Dispositivo Nombre</th>
+					<th>Descripción</th>
+					<th>Fecha y Hora</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<!-- Iterar sobre los eventos y mostrarlos en filas de la tabla -->
+				<tr th:each="evento : ${eventos}">
+					<td th:text="${evento.idEvento}"></td>
+					<td th:text="${evento.dispositivo.idDispositivo}"></td>
+					<td th:text="${evento.dispositivo.name}"></td>
+					<td th:text="${evento.description}"></td>
+					<td th:text="${evento.dateTime}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="/estacionamiento/show" class="btn btn-primary">Estacionamientos</a>
+		
+		<a href="/evento/todosLosEventos" class="btn btn-primary">Eventos</a>
+	</div>
+
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+    <title>Eventos de Estacionamientos</title>
+</head>
+<body>
+    <h1>Eventos de Estacionamientos</h1>
+    
+ <table>
+    <tr>
+        <th>ID Evento</th>
+        <th>Dispositivo ID</th>
+        <th>Dispositivo Nombre</th>
+        <th>Descripción</th>
+        <th>Fecha y Hora</th>
+    </tr>
+    
+    <th:block th:each="evento : ${eventos}">
+        <tr>
+            <td th:text="${evento.idEvento}"></td>
+            <td th:text="${evento.dispositivo.idDispositivo}"></td>
+            <td th:text="${evento.dispositivo.name}"></td>
+            <td th:text="${evento.description}"></td>
+            <td th:text="${evento.dateTime}"></td>
+        </tr>
+    </th:block>
+</table>
+    
+    <a href="/estacionamiento/show" class="btn btn-primary">Volver</a>
+
+</body>
+</html> -->

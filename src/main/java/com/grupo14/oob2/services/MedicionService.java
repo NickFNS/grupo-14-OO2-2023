@@ -2,7 +2,7 @@ package com.grupo14.oob2.services;
 
 import java.util.List;
 
-import com.grupo14.oob2.entities.Medicion;
+import com.grupo14.oob2.entities.*;
 
 public interface MedicionService {
 
@@ -12,8 +12,19 @@ public interface MedicionService {
 
 	public List<Medicion> getAll();
 
-	public Medicion insertOrUpdateMedicion(Medicion m);
+	public Medicion insertOrUpdate(Medicion m);
 
 	public abstract boolean removeByIdMedicion(int idMedicion);
+	
+	// ESTACIONAMIENTOS
+	public List<MedicionEstacionamiento> getAllMedicionEstacionamiento();
+	
+	public List<MedicionEstacionamiento> getUltimaMedicionEstacionamiento(Estacionamiento estacionamiento);
+
+
+	// ESTACIONAMIENTOS
+	public List<MedicionDAula> getAllMedicionDAula();
+
+	public List<MedicionDAula> getUltimaMedicionDAulao(DAula daula);
 
 }
