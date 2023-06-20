@@ -34,7 +34,8 @@ public class ViewRouteHelper {
 	public final static String FORM_NEW_ESTACIONAMIENTO = "/estacionamiento/newEstacionamientoForm";
 
 	/// Eventos:
-	// Eventos de Estacionamiento:
 	public final static String SHOW_EVENTOS = "/evento/allEventos";
 	public final static String SHOW_EVENTOS_ESTACIONAMIENTO = "/evento/eventosEstacionamientos";
+
+	public final static String SHOW_EVENTOS_DAULA = "/evento/eventosDAula";
 }

@@ -103,7 +103,7 @@ public class EventoController {
 		}
 
 		model.addAttribute("eventos", eventosAula);
-		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
+		return ViewRouteHelper.SHOW_EVENTOS_DAULA;
 	}
 
 	@GetMapping("/todosLosEventos")
