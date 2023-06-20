@@ -141,9 +141,9 @@
     <div class="content">
       <div class="container">
         <form
-          th:action="@{/aula/dashboard/abm/aulaCreate}"
           th:object="${daula}"
           method="post"
+          th:action="@{/aula/dashboard/abm/aulaUpdate/}"
         >
           <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
@@ -186,26 +186,6 @@
               <option value="false">No</option>
             </select>
           </div>
-
-          <div class="mb-3">
-            <label for="info" class="form-label">Sector</label>
-            <select
-              class="form-select"
-              id="info"
-              name="info"
-              required
-              th:field="${daula.idSector}"
-              th:required="true"
-            >
-              <option
-                th:each="sector : ${sectores}"
-                th:value="${sector.idSector}"
-                th:text="${sector.name}"
-                required
-              ></option>
-            </select>
-          </div>
-
           <input type="submit" value="enviar" class="btn btn-primary" />
         </form>
       </div>

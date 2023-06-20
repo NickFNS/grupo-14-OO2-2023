@@ -31,6 +31,7 @@
       table {
         width: 100%;
         border-collapse: collapse;
+        margin-top: 30px;
       }
 
       th,
@@ -49,7 +50,7 @@
       }
 
       .button {
-        padding: 8px 16px;
+        padding: 5px 16px;
         background-color: #333;
         color: #fff;
         border: none;
@@ -66,8 +67,10 @@
   </head>
   <body>
     <div class="container">
-      <h2>Table de dispositivos</h2>
-      <button class="button">Crear Dispositivo Aula</button>
+      <h2>Table de dispositivos Aulas</h2>
+      <a href="/aula/dashboard/abm/aulaCreate" class="button"
+        >Crear Dispositivo Aula</a
+      >
       <table>
         <thead>
           <tr>
@@ -79,14 +82,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>id</td>
-            <td>name</td>
-            <td>type</td>
-            <td>enabled</td>
+          <tr th:each="daula : ${dAulas}">
+            <td th:text="${daula.idDispositivo}"></td>
+            <td th:text="${daula.name}"></td>
+            <td th:text="${daula.type}"></td>
+            <td th:text="${daula.enabled}"></td>
             <td>
-              <button class="button">Editar</button>
-              <button class="button">Eliminar</button>
+              <a
+                th:href="@{/aula/dashboard/abm/aulaUpdate/{id}(id=${daula.idDispositivo})}"
+                class="button"
+                >Editar</a
+              >
+              <a
+                th:href="@{/aula/dashboard/abm/aulaDelete/{id}(id=${daula.idDispositivo})}"
+                class="button"
+                >Eliminar</a
+              >
             </td>
           </tr>
         </tbody>

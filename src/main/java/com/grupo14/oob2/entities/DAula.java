@@ -24,6 +24,9 @@ public class DAula extends Dispositivo{
     @Column(name = "open_door")
     protected boolean openDoor;
 
+    @Column(name = "lights_on")
+    protected boolean lightsOn;
+
     @Column(name = "computers_on")
     protected boolean computersOn;
 

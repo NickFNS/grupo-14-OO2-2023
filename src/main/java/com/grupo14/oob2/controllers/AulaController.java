@@ -37,11 +37,15 @@ public class AulaController {
         return modelAndView;
     }
 
+    //TableABM
     @GetMapping("/dashboard/tableAbm")
-    public ModelAndView tableAbm() {
+    public ModelAndView tableAbm(Model model) {
+        model.addAttribute("dAulas", dAulaService.findAll());
         ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.AULA_DASHBOARD_ABMTABLE);
         return modelAndView;
     }
+
+    //Delete Aula
 
     //Get By Sector
     @GetMapping("/dashboard/sectores")
@@ -57,6 +61,41 @@ public class AulaController {
         model.addAttribute("sector", sector);
         model.addAttribute("Daulas", sector.getDispositivos());
         return ViewRouteHelper.AULA_DASHBOARD_SECTORES_DAULA;
+    }
+
+    //Delete DE AULAS
+    @GetMapping("/dashboard/abm/aulaDelete/{id}")
+    public String aulaDelete(@PathVariable("id") int id,Model model) throws Exception {
+        model.addAttribute("daula", new DispositivoCreate());
+        DAula edit = dAulaService.findByID(id);
+        edit.setEnabled(false);
+        dAulaService.update(edit);
+        return ViewRouteHelper.AULA_ABM_SUCCESS;
+    }
+
+    //Update DE AULAS
+    @GetMapping("/dashboard/abm/aulaUpdate/{id}")
+    public String aulaUpdate(@PathVariable("id") int id,Model model) {
+        model.addAttribute("daula", new DispositivoCreate());
+        model.addAttribute("sectores", sectorRepository.findAll());
+        return ViewRouteHelper.AULA_ABM_EDIT;
+    }
+
+    @PostMapping("/dashboard/abm/aulaUpdate/{id}")
+    public RedirectView aulaUpdatePost(@PathVariable("id") int id,@Valid @ModelAttribute("daula")DispositivoCreate dAula, BindingResult result, ModelMap model) throws Exception {
+
+        if(result.hasErrors()) {
+            model.addAttribute("daula", dAula);
+            model.addAttribute("sectores", sectorRepository.findAll());
+            return new RedirectView(ViewRouteHelper.AULA_ABM_EDIT);
+        }else {
+            DAula edit = dAulaService.findByID(id);
+            edit.setEnabled(dAula.isEnabled());
+            edit.setName(dAula.getName());
+            edit.setType(dAula.getType());
+            dAulaService.update(edit);
+            return new RedirectView("/"+ViewRouteHelper.AULA_DASHBOARD);
+        }
     }
 
 
@@ -75,7 +114,7 @@ public class AulaController {
             model.addAttribute("sectores", sectorRepository.findAll());
             return new RedirectView(ViewRouteHelper.AULA_ABM_CREATE);
         }else {
-            DAula newDaula = new DAula(false,false,false,false);
+            DAula newDaula = new DAula(false,false,false,false,false);
             newDaula.setEnabled(dAula.isEnabled());
             newDaula.setName(dAula.getName());
             newDaula.setType(dAula.getType());
@@ -88,6 +127,8 @@ public class AulaController {
             return new RedirectView("/"+ViewRouteHelper.AULA_DASHBOARD);
         }
     }
+
+
     @GetMapping("/")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.AULA_DASHBOARD);

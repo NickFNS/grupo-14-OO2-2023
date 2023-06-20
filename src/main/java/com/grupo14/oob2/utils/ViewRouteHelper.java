@@ -21,6 +21,10 @@ public class ViewRouteHelper {
 
 	public final static String AULA_ABM_CREATE = "aula/abmCreate";
 
+	public final static String AULA_ABM_EDIT = "aula/abmEdit";
+
+	public final static String AULA_ABM_SUCCESS = "aula/messageSuccess";
+
 	public final static String AULA_DASHBOARD_SECTORES = "aula/sectoresDAula";
 
 	public final static String AULA_DASHBOARD_SECTORES_DAULA = "aula/dAulabySectores";
