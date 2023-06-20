@@ -17,9 +17,13 @@ public class ViewRouteHelper {
 	// AULA
 	public final static String AULA_DASHBOARD = "aula/dashboard";
 
+	public final static String AULA_DASHBOARD_ABMTABLE = "aula/abmTable";
+
 	public final static String AULA_ABM_CREATE = "aula/abmCreate";
 
 	public final static String AULA_DASHBOARD_SECTORES = "aula/sectoresDAula";
+
+	public final static String AULA_DASHBOARD_SECTORES_DAULA = "aula/dAulabySectores";
 
 	/// Estacionamiento
 	public final static String SHOW_ESTACIONAMIENTOS = "/estacionamiento/show";

@@ -37,14 +37,30 @@ public class AulaController {
         return modelAndView;
     }
 
+    @GetMapping("/dashboard/tableAbm")
+    public ModelAndView tableAbm() {
+        ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.AULA_DASHBOARD_ABMTABLE);
+        return modelAndView;
+    }
+
+    //Get By Sector
     @GetMapping("/dashboard/sectores")
     public String sectoresGet(Model model) {
         model.addAttribute("sectores", sectorRepository.findAll());
         return ViewRouteHelper.AULA_DASHBOARD_SECTORES;
     }
 
+    @GetMapping("/dashboard/sectores/{id}")
+    public String verSector(@PathVariable("id") int id, Model model) {
+        // Aquí obtienes los detalles del sector desde tu backend utilizando el ID
+        Sector sector = sectorRepository.getById(id);
+        model.addAttribute("sector", sector);
+        model.addAttribute("Daulas", sector.getDispositivos());
+        return ViewRouteHelper.AULA_DASHBOARD_SECTORES_DAULA;
+    }
 
-    //ABM DE AULAS
+
+    //Create DE AULAS
     @GetMapping("/dashboard/abm/aulaCreate")
     public String aulaCreateGet(Model model) {
         model.addAttribute("daula", new DispositivoCreate());
