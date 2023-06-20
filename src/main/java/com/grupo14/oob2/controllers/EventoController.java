@@ -44,9 +44,7 @@ public class EventoController {
 					eventosEstacionamientos = eventoService.findByTypeAndDateOrderByIdEventoDesc(type, fecha);
 				}
 			} catch (ParseException e) {
-				// Manejo de la excepción en caso de que la cadena no pueda ser parseada como
-				// fecha
-				// Aquí puedes agregar un mensaje de error o realizar alguna acción adecuada
+
 				return "error";
 			}
 		} else if (idDispositivo != null && description != null) {
@@ -66,46 +64,52 @@ public class EventoController {
 		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
 	}
 
+
+	@GetMapping("/eventosAula")
+	public String mostrarEventosAula(@RequestParam(value = "date", required = false) String date,
+												 @RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
+												 @RequestParam(value = "description", required = false) String description, Model model) {
+
+		String type = "Aula";
+		List<Evento> eventosAula;
+
+		if (date != null && !date.isEmpty()) {
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date fecha = dateFormat.parse(date);
+
+				if (idDispositivo != null) {
+					eventosAula = eventoService
+							.findByTypeAndDateAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type, fecha,
+									idDispositivo, description);
+				} else {
+					eventosAula = eventoService.findByTypeAndDateOrderByIdEventoDesc(type, fecha);
+				}
+			} catch (ParseException e) {
+
+				return "error";
+			}
+		} else if (idDispositivo != null && description != null) {
+			eventosAula = eventoService
+					.findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type, idDispositivo,
+							description);
+		} else if (idDispositivo != null) {
+			eventosAula = eventoService.findByTypeAndDispositivoIdOrderByIdEventoDesc(type, idDispositivo);
+		} else if (description != null) {
+			eventosAula = eventoService.findByTypeAndDescriptionContainingOrderByIdEventoDesc(type,
+					description);
+		} else {
+			eventosAula = eventoService.findByDispositivoTypeOrderByIdEventoDesc(type);
+		}
+
+		model.addAttribute("eventos", eventosAula);
+		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
+	}
+
 	@GetMapping("/todosLosEventos")
 	public String mostrarTodosLosEventos(Model model) {
 		List<Evento> eventos = eventoService.getAll();
 		model.addAttribute("eventos", eventos);
 		return ViewRouteHelper.SHOW_EVENTOS;
-}
 	}
-
-/*
- * @GetMapping("/eventosEstacionamientos") public String
- * mostrarEventosEstacionamientos(@RequestParam(value = "dateTime", required =
- * false) String dateTime, Model model) { List<Evento> eventosEstacionamientos;
- * 
- * if (dateTime != null && !dateTime.isEmpty()) { try { SimpleDateFormat
- * dateFormat = new SimpleDateFormat("yyyy-MM-dd"); Date fecha =
- * dateFormat.parse(dateTime);
- * 
- * eventosEstacionamientos =
- * eventoService.findByDispositivoTypeAndDateTimeOrderByIdEventoDesc(
- * "Estacionamiento", fecha); } catch (ParseException e) { // Manejo de la
- * excepción en caso de que la cadena no pueda ser parseada como fecha // Aquí
- * puedes agregar un mensaje de error o realizar alguna acción adecuada return
- * "error"; } } else { eventosEstacionamientos =
- * eventoService.findByDispositivoTypeOrderByIdEventoDesc("Estacionamiento"); }
- * 
- * model.addAttribute("eventos", eventosEstacionamientos); return
- * ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO; }
- * 
- * 
- * 
- * El normal:
- * 
- * @GetMapping("/eventosEstacionamientos") public String
- * mostrarEventosEstacionamientos(Model model) { // Obtener todos los eventos
- * cuyo dispositivo es un estacionamiento List<Evento> eventosEstacionamientos =
- * eventoService.findByDispositivoTypeOrderByIdEventoDesc("Estacionamiento");
- * 
- * // Agregar los eventos al modelo para mostrarlos en la vista
- * model.addAttribute("eventos", eventosEstacionamientos);
- * 
- * // Devolver la vista que muestra los eventos de estacionamientos return
- * ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO; }
- */
+}

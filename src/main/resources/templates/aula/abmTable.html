@@ -94,6 +94,11 @@
                 >Editar</a
               >
               <a
+                th:href="@{/medicionAula/create/{id}(id=${daula.idDispositivo})}"
+                class="button"
+                >Crear Nueva Medicion</a
+              >
+              <a
                 th:href="@{/aula/dashboard/abm/aulaDelete/{id}(id=${daula.idDispositivo})}"
                 class="button"
                 >Eliminar</a
