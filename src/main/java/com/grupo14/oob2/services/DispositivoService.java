@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.grupo14.oob2.entities.Banio;
 import com.grupo14.oob2.entities.Dispositivo;
