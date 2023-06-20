@@ -1,12 +1,9 @@
 package com.grupo14.oob2.entities;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;

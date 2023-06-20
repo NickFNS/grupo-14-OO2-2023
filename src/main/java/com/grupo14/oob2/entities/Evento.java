@@ -25,6 +25,7 @@ public class Evento {
 	@Column(name = "description", nullable = false)
 	private String description;
 
+	// Es necesario?
 	@Column(name = "enabled")
 	private boolean enabled;
 
