@@ -29,6 +29,9 @@ public class HomeController {
     @GetMapping("/")
     public RedirectView redirectToHomeIndex() {
         RedirectView redirect =new RedirectView(ViewRouteHelper.ROUTE);
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString() == "anonymousUser"){
+            return new RedirectView(ViewRouteHelper.USER_LOGIN);
+        }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(user.getUsername());
         if(user.getUsername() == null) {

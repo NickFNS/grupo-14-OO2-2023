@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Todos los eventos</title>
 
-<head>
-	<title>Todos los eventos</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/css/estilosEstacionamiento.css}"
+    />
+  </head>
 
-	<link rel="stylesheet" type="text/css" href="../estilosEstacionamiento.css">
+  <body>
+    <h1>Eventos de Todos los Dispositivos</h1>
+    <div class="filter_and_form_container">
+      <table class="table_content">
+        <thead>
+          <tr>
+            <th>ID Evento</th>
+            <th>Tipo de Dispositivo</th>
+            <th>Dispositivo ID</th>
+            <th>Dispositivo Nombre</th>
+            <th>Descripción</th>
+            <th>Fecha y Hora</th>
+          </tr>
+        </thead>
 
-</head>
+        <tbody>
+          <!-- Iterar sobre los eventos y mostrarlos en filas de la tabla -->
+          <tr th:each="evento : ${eventos}">
+            <td th:text="${evento.idEvento}"></td>
+            <td th:text="${evento.dispositivo.type}"></td>
+            <td th:text="${evento.dispositivo.idDispositivo}"></td>
+            <td th:text="${evento.dispositivo.name}"></td>
+            <td th:text="${evento.description}"></td>
+            <td th:text="${evento.dateTime}"></td>
+          </tr>
+        </tbody>
+      </table>
 
-<body>
+      <a href="/index" class="btn btn-primary">Volver a Index</a>
 
-	<h1>Eventos de Todos los Dispositivos</h1>
-	<div class="filter_and_form_container">
-		
-	<table class="table_content">
-		<thead>
-			<tr>
-				<th>ID Evento</th>
-				<th>Tipo de Dispositivo</th>
-				<th>Dispositivo ID</th>
-				<th>Dispositivo Nombre</th>
-				<th>Descripción</th>
-				<th>Fecha y Hora</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<!-- Iterar sobre los eventos y mostrarlos en filas de la tabla -->
-			<tr th:each="evento : ${eventos}">
-				<td th:text="${evento.idEvento}"></td>
-				<td th:text="${evento.dispositivo.type}"></td>
-				<td th:text="${evento.dispositivo.idDispositivo}"></td>
-				<td th:text="${evento.dispositivo.name}"></td>
-				<td th:text="${evento.description}"></td>
-				<td th:text="${evento.dateTime}"></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<a href="/index" class="btn btn-primary">Volver a Index</a>
-	
-	<a href="/evento/eventosEstacionamientos" class="btn btn-primary">Eventos de Estacionamientos</a>
-
-	</div>
-</body>
-
+      <a href="/evento/eventosEstacionamientos" class="btn btn-primary"
+        >Eventos de Estacionamientos</a
+      >
+    </div>
+  </body>
 </html>
