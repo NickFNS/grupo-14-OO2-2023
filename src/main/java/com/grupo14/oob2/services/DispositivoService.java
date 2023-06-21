@@ -2,16 +2,10 @@ package com.grupo14.oob2.services;
 
 import java.util.Date;
 import java.util.List;
-
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-=======
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import com.grupo14.oob2.entities.Banio;
->>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.entities.Estacionamiento;
 
@@ -23,11 +17,9 @@ public interface DispositivoService {
 
 	public abstract List<Dispositivo> getAll();
 
-<<<<<<< HEAD
 	public Dispositivo insertOrUpdateEstacionamiento(Dispositivo d);
-=======
+
 	public Dispositivo insertOrUpdateBanio(Dispositivo d);
->>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 
 	public abstract void removeByIdDispositivo(int idDispositivo);
 
@@ -44,7 +36,7 @@ public interface DispositivoService {
 
 	@ModelAttribute("estacionamiento")
 	public abstract List<Estacionamiento> findEstacionamientosByDateAndName(Date date, String name);
-	
+
 	@ModelAttribute("estacionamiento")
 	public abstract Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo);
 

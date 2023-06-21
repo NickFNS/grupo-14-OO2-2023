@@ -14,8 +14,6 @@
 	<h1>Tabla de Baño</h1>
 
 	<form method="GET" action="/banio">
-		<label for="fecha">Ingrese una fecha:</label>
-		<input type="date" id="fecha" name="fecha">
 
 		<label for="nombre">Ingrese un nombre:</label>
 		<input type="text" id="nombre" name="nombre">
@@ -26,11 +24,11 @@
 	<table>
 		<thead>
 			<tr>
-				<th>IdDispositivo</th>
-				<th>Name</th>
-				<th>Created_at</th>
-				<th>Places</th>
+				<th>ID Dispositivo</th>
+				<th>Nombre</th>
+				<th>Numero</th>
 				<th>Medicion</th>
+				<th>Dar de baja</th>
 			</tr>
 		</thead>
 
@@ -38,14 +36,25 @@
 			<tr th:each="banio : ${banios}">
 				<td th:text="${banio.idDispositivo}"></td>
 				<td th:text="${banio.name}"></td>
-				<td th:text="${banio.created_at}"></td>
+				<td th:text="${banio.bathroom_number}"></td>
 				<td>
-					<a th:href="@{/medicionBanio/new(idBanio=${banio.idDispositivo})}">Crear Medicion</a>
+					<form th:action="@{/medicionBanio/create}" method="post">
+						<input type="hidden" name="idBanio" th:value="${banio.idDispositivo}" />
+						<button type="submit">Crear Medicion</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/banio/delete/{idBanio}(idBanio=${banio.idDispositivo})}" method="post">
+						<input type="hidden" name="_method" value="DELETE" />
+						<button type="submit">Dar de baja</button>
+					</form>
 				</td>
 			</tr>
 		</tbody>
 
 		<a href="/banio/crear" class="btn btn-primary">Crear nuevo baño</a>
+		<hr>
+		<a href="/evento/eventosBanios" class="btn btn-primary">Mostrar eventos</a>
 </body>
 
 </html>

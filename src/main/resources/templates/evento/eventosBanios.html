@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Eventos de Baños</title>
+
+</head>
+
+<body>
+
+	<div>
+
+		<h1>Eventos de Baños</h1>
+
+		<form action="eventosBanios" method="GET">
+			<label for="date">Fecha y Hora:</label>
+			<input type="date" id="date" name="date" value="${param.dateTime}">
+
+			<label for="idDispositivo">ID Dispositivo:</label>
+			<input type="number" id="idDispositivo" name="idDispositivo" value="${param.idDispositivo}">
+
+			<label for="description">Descripción:</label>
+			<input type="text" id="description" name="description" th:value="${param.description}">
+
+			<input type="submit" value="Buscar">
+		</form>
+
+		<table class="table_content">
+			<thead>
+				<tr>
+					<th>ID Evento</th>
+					<th>Dispositivo ID</th>
+					<th>Dispositivo Nombre</th>
+					<th>Descripción</th>
+					<th>Fecha y Hora</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<!-- Iterar sobre los eventos y mostrarlos en filas de la tabla -->
+				<tr th:each="evento : ${eventos}">
+					<td th:text="${evento.idEvento}"></td>
+					<td th:text="${evento.dispositivo.idDispositivo}"></td>
+					<td th:text="${evento.dispositivo.name}"></td>
+					<td th:text="${evento.description}"></td>
+					<td th:text="${evento.dateTime}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="/banio/show" class="btn btn-primary">Baños</a>
+
+		<a href="/evento/todosLosEventos" class="btn btn-primary">Eventos</a>
+	</div>
+
+</body>
+
+</html>

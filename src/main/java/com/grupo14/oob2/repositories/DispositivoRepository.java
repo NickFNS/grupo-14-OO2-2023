@@ -1,11 +1,9 @@
 package com.grupo14.oob2.repositories;
 
-<<<<<<< HEAD
 import com.grupo14.oob2.entities.DAula;
-=======
 import com.grupo14.oob2.entities.Banio;
->>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 import com.grupo14.oob2.entities.Dispositivo;
+import com.grupo14.oob2.entities.Estacionamiento;
 
 import java.util.Date;
 import java.util.List;
@@ -18,20 +16,27 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DispositivoRepository extends JpaRepository<Dispositivo, Integer> {
 
-<<<<<<< HEAD
-	// TODO: Revisar si se puede hacer con JPA O Scrud Repository
 	Dispositivo findById(int idDispositivo);
-	
+
 	// Estacionamiento
 	@Query("SELECT e FROM Estacionamiento e WHERE e.idDispositivo =(:idDispositivo)")
 	Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo);
-	
+
 	@Query("SELECT e FROM Estacionamiento e")
 	List<Estacionamiento> findAllEstacionamientos();
-	
+
 	@Query("SELECT e FROM Estacionamiento e WHERE FUNCTION('DATE', e.created_at) = :date")
 	List<Estacionamiento> findEstacionamientosByDate(@Param("date") Date date);
-=======
+
+	@Query("SELECT e FROM Estacionamiento e WHERE e.enabled = (:enabled)")
+	List<Estacionamiento> findEstacionamientosByEnabled(@Param("enabled") boolean enabled);
+
+	@Query("SELECT e FROM Estacionamiento e WHERE e.name = (:name)")
+	List<Estacionamiento> findEstacionamientosByName(@Param("name") String name);
+
+	@Query("SELECT e FROM Estacionamiento e WHERE FUNCTION('DATE', e.created_at) = :date AND e.name = (:name)")
+	List<Estacionamiento> findEstacionamientosByDateAndName(@Param("date") Date date, @Param("name") String name);
+
 	// Baños
 	@Query("SELECT b FROM Banio b WHERE b.idDispositivo =(:idDispositivo)")
 	Banio findBanioByIdDispositivo(int idDispositivo);
@@ -41,20 +46,10 @@ public interface DispositivoRepository extends JpaRepository<Dispositivo, Intege
 
 	@Query("SELECT b FROM Banio b WHERE FUNCTION('DATE', b.created_at) = :date")
 	List<Banio> findBaniosByDate(@Param("date") Date date);
->>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848
 
 	@Query("SELECT b FROM Banio b WHERE b.enabled = (:enabled)")
 	List<Banio> findBaniosByEnabled(@Param("enabled") boolean enabled);
 
-<<<<<<< HEAD
-	@Query("SELECT e FROM Estacionamiento e WHERE e.name = (:name)")
-	List<Estacionamiento> findEstacionamientosByName(@Param("name") String name);
-
-	@Query("SELECT e FROM Estacionamiento e WHERE FUNCTION('DATE', e.created_at) = :date AND e.name = (:name)")
-	List<Estacionamiento> findEstacionamientosByDateAndName(@Param("date") Date date, @Param("name") String name);
-
-}
-=======
 	@Query("SELECT b FROM Banio b WHERE b.name = (:name)")
 	List<Banio> findBaniosByName(@Param("name") String name);
 
@@ -62,4 +57,3 @@ public interface DispositivoRepository extends JpaRepository<Dispositivo, Intege
 	List<Banio> findBaniosByDateAndName(@Param("date") Date date, @Param("name") String name);
 
 }
->>>>>>> 830a654827cdc339691adffeaa9f7f9f67266848

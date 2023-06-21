@@ -19,15 +19,26 @@ import lombok.Setter;
 @Table(name = "medicion_banio")
 public class MedicionBanio extends Medicion {
 
-	/*
-	@Column(name = "used_time")
-	public LocalDateTime used_time;
-	*/
-
 	@Column(name = "cleaning_day")
 	public LocalDateTime cleaning_day;
 
 	@Column(name = "occupied")
 	public boolean occupied;
+
+	public LocalDateTime getCleaning_day() {
+		return cleaning_day;
+	}
+
+	public void setCleaning_day(LocalDateTime cleaning_day) {
+		this.cleaning_day = cleaning_day;
+	}
+
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
 
 }
