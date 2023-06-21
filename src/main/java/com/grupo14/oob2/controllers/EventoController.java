@@ -64,11 +64,10 @@ public class EventoController {
 		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
 	}
 
-
 	@GetMapping("/eventosAula")
 	public String mostrarEventosAula(@RequestParam(value = "date", required = false) String date,
-												 @RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
-												 @RequestParam(value = "description", required = false) String description, Model model) {
+			@RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
+			@RequestParam(value = "description", required = false) String description, Model model) {
 
 		String type = "Aula";
 		List<Evento> eventosAula;
@@ -90,20 +89,59 @@ public class EventoController {
 				return "error";
 			}
 		} else if (idDispositivo != null && description != null) {
-			eventosAula = eventoService
-					.findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type, idDispositivo,
-							description);
+			eventosAula = eventoService.findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type,
+					idDispositivo, description);
 		} else if (idDispositivo != null) {
 			eventosAula = eventoService.findByTypeAndDispositivoIdOrderByIdEventoDesc(type, idDispositivo);
 		} else if (description != null) {
-			eventosAula = eventoService.findByTypeAndDescriptionContainingOrderByIdEventoDesc(type,
-					description);
+			eventosAula = eventoService.findByTypeAndDescriptionContainingOrderByIdEventoDesc(type, description);
 		} else {
 			eventosAula = eventoService.findByDispositivoTypeOrderByIdEventoDesc(type);
 		}
 
 		model.addAttribute("eventos", eventosAula);
 		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
+	}
+
+	@GetMapping("/eventosBanios")
+	public String mostrarEventosBanios(@RequestParam(value = "date", required = false) String date,
+			@RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
+			@RequestParam(value = "description", required = false) String description, Model model) {
+
+		String type = "Banio";
+		List<Evento> eventosBanios;
+
+		if (date != null && !date.isEmpty()) {
+			try {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date fecha = dateFormat.parse(date);
+
+				if (idDispositivo != null) {
+					eventosBanios = eventoService
+							.findByTypeAndDateAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type, fecha,
+									idDispositivo, description);
+				} else {
+					eventosBanios = eventoService.findByTypeAndDateOrderByIdEventoDesc(type, fecha);
+				}
+			} catch (ParseException e) {
+
+				return "error";
+			}
+		} else if (idDispositivo != null && description != null) {
+			eventosBanios = eventoService
+					.findByTypeAndDispositivoIdAndDescriptionContainingOrderByIdEventoDesc(type, idDispositivo,
+							description);
+		} else if (idDispositivo != null) {
+			eventosBanios = eventoService.findByTypeAndDispositivoIdOrderByIdEventoDesc(type, idDispositivo);
+		} else if (description != null) {
+			eventosBanios = eventoService.findByTypeAndDescriptionContainingOrderByIdEventoDesc(type,
+					description);
+		} else {
+			eventosBanios = eventoService.findByDispositivoTypeOrderByIdEventoDesc(type);
+		}
+
+		model.addAttribute("eventos", eventosBanios);
+		return ViewRouteHelper.SHOW_EVENTOS_BANIO;
 	}
 
 	@GetMapping("/todosLosEventos")
