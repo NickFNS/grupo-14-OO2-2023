@@ -20,4 +20,14 @@ public class MedicionDAula extends Medicion{
     @Column(name = "occupied")
     protected boolean occupied;
 
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
+    
+    
+
 }

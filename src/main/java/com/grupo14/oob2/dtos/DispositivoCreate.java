@@ -12,8 +12,41 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 public class DispositivoCreate {
-    private String name;
-    private boolean enabled;
-    private String type;
-    private int idSector;
+	private String name;
+	private boolean enabled;
+	private String type;
+	private int idSector;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public int getIdSector() {
+		return idSector;
+	}
+
+	public void setIdSector(int idSector) {
+		this.idSector = idSector;
+	}
+
 }
