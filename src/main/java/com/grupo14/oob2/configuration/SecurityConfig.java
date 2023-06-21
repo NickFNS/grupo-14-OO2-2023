@@ -33,17 +33,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(resources).permitAll()
-                .antMatchers("/login").permitAll()
-                .anyRequest().authenticated()
-                .and() .formLogin() .loginPage("/login").loginProcessingUrl("/loginprocess")
-                .usernameParameter("name") .passwordParameter("password")
-                .defaultSuccessUrl("/index").permitAll()
+                .antMatchers("/login", "/logout","/").permitAll()
+                .antMatchers("/index","/evento/todosLosEventos","/evento/eventosAula","/evento/eventosEstacionamientos").hasAnyAuthority("audit", "admin")
+                .anyRequest().hasAuthority("admin")
+                .and()
+                .formLogin()
+                .loginPage("/login").loginProcessingUrl("/loginprocess")
+                .usernameParameter("name").passwordParameter("password")
+                .defaultSuccessUrl("/index", true).permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout") // Especifica la URL de logout
-                .logoutSuccessUrl("/login") // URL a la que se redirige después del logout exitoso
-                .invalidateHttpSession(true) // Invalida la sesión HTTP existente
-                .deleteCookies("JSESSIONID") // Elimina las cookies específicas (en este caso, JSESSIONID)
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll();
     }
 

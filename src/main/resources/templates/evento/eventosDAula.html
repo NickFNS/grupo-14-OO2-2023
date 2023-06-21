@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Eventos de Estacionamientos</title>
-
     <link
       rel="stylesheet"
       type="text/css"
@@ -12,9 +11,9 @@
 
   <body>
     <div class="filter_and_form_container">
-      <h1>Eventos de Estacionamientos</h1>
+      <h1>Eventos de Aula</h1>
 
-      <form action="eventosEstacionamientos" method="GET">
+      <form action="eventosAula" method="GET">
         <label for="date">Fecha y Hora:</label>
         <input type="date" id="date" name="date" value="${param.dateTime}" />
 
@@ -60,45 +59,7 @@
         </tbody>
       </table>
 
-      <a href="/estacionamiento/show" class="btn btn-primary"
-        >Estacionamientos</a
-      >
-
       <a href="/evento/todosLosEventos" class="btn btn-primary">Eventos</a>
     </div>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	
-<head>
-    <title>Eventos de Estacionamientos</title>
-</head>
-<body>
-    <h1>Eventos de Estacionamientos</h1>
-    
- <table>
-    <tr>
-        <th>ID Evento</th>
-        <th>Dispositivo ID</th>
-        <th>Dispositivo Nombre</th>
-        <th>Descripción</th>
-        <th>Fecha y Hora</th>
-    </tr>
-    
-    <th:block th:each="evento : ${eventos}">
-        <tr>
-            <td th:text="${evento.idEvento}"></td>
-            <td th:text="${evento.dispositivo.idDispositivo}"></td>
-            <td th:text="${evento.dispositivo.name}"></td>
-            <td th:text="${evento.description}"></td>
-            <td th:text="${evento.dateTime}"></td>
-        </tr>
-    </th:block>
-</table>
-    
-    <a href="/estacionamiento/show" class="btn btn-primary">Volver</a>
-
-</body>
-</html> -->
