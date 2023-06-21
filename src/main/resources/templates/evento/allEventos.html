@@ -61,6 +61,16 @@
             <li class="nav-item">
               <a href="/index" class="btn text-white">Volver a Index</a>
             </li>
+            
+            <li class="nav-item">
+              <a
+                href="/evento/eventosBanios"
+                class="btn text-white"
+                th:if="${role != '[audit]'}"
+                >Eventos de Banios</a
+              >
+            </li>
+            
             <li class="nav-item">
               <a
                 href="/evento/eventosEstacionamientos"

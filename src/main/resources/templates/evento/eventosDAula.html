@@ -43,7 +43,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="abm/aulaCreate">Smart City</a>
+        <a class="navbar-brand" href="#e">Smart City</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -60,6 +60,16 @@
             <li class="nav-item">
               <a href="/index" class="btn text-white">Volver a Index</a>
             </li>
+            
+            <li class="nav-item">
+              <a
+                href="/evento/eventosBanios"
+                class="btn text-white"
+                th:if="${role != '[audit]'}"
+                >Eventos de Banios</a
+              >
+            </li>
+            
             <li class="nav-item">
               <a
                 href="/evento/eventosEstacionamientos"
