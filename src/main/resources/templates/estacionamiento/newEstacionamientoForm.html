@@ -3,27 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <title>Create new Estacionamiento</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/css/estilosEstacionamiento.css}"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/product/"
+    />
+    <link
+      href="/docs/5.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar {
+        background-color: #343a40;
+      }
+
+      .nav-link {
+        color: #fff;
+      }
+      a .nav-link:hover {
+        color: #adb5bd;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Create new Estacionamiento</h1>
-    <form
-      th:action="@{/estacionamiento/create}"
-      method="post"
-      th:object="${estacionamiento}"
-    >
-      <p>Name: <input type="text" th:field="*{name}" /></p>
-
-      <p>Places:</p>
-      <div th:each="place, iter : *{places}">
-        <input type="number" th:field="*{places[__${iter.index}__]}" />
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/estacionamiento/show">Estacionamiento</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/estacionamiento/show" class="btn text-light"
+                >Ver estacionamientos</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-danger">Logout</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <input type="submit" value="Create Estacionamiento" />
-    </form>
+    </nav>
+    <div class="bodyContainer2">
+      <h1>Create new Estacionamiento</h1>
+      <form
+        th:action="@{/estacionamiento/create}"
+        method="post"
+        th:object="${estacionamiento}"
+      >
+        <p>Name: <input type="text" th:field="*{name}" /></p>
 
-    <a href="/estacionamiento/show" class="btn btn-primary"
-      >Ver estacionamientos</a
-    >
+        <p>Places:</p>
+        <div th:each="place, iter : *{places}">
+          <input type="number" th:field="*{places[__${iter.index}__]}" />
+        </div>
+        <input type="submit" value="Create Estacionamiento" />
+      </form>
+    </div>
   </body>
 </html>
 <!--
