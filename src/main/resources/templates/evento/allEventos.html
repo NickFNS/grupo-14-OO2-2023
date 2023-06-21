@@ -40,8 +40,18 @@
 
       <a href="/index" class="btn btn-primary">Volver a Index</a>
 
-      <a href="/evento/eventosEstacionamientos" class="btn btn-primary"
+      <a
+        href="/evento/eventosEstacionamientos"
+        class="btn btn-primary"
+        th:if="${role != '[audit]'}"
         >Eventos de Estacionamientos</a
+      >
+
+      <a
+        href="/evento/eventosAula"
+        class="btn btn-primary"
+        th:if="${role != '[audit]'}"
+        >Eventos de Aula</a
       >
     </div>
   </body>
