@@ -152,7 +152,9 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1 justify-content-between">
               <li class="nav-item" th:if="${role != '[audit]'}">
-                <a class="nav-link" href="#">Estacionamiento</a>
+                <a class="nav-link" href="/estacionamiento/show"
+                  >Estacionamiento</a
+                >
               </li>
               <li class="nav-item" th:if="${role != '[audit]'}">
                 <a class="nav-link" href="#">Baño</a>
@@ -204,7 +206,10 @@
         ></div>
       </div>
       <div class="d-flex flex-colum" th:if="${role != '[audit]'}">
-        <div class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3">
+        <a
+          class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3"
+          href="/estacionamiento/show"
+        >
           <div
             class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
           >
@@ -214,9 +219,15 @@
             <div
               class="bg-body-tertiary shadow-sm mx-auto"
               style="width: 300px; height: 300px; border-radius: 21px 21px 0 0"
-            ></div>
+            >
+              <img
+                src="https://unlp.edu.ar/wp-content/uploads/2022/08/DE5A4888-930x620.jpg"
+                alt="Descripción de la imagen"
+                style="width: 100%; height: 300px; border-radius: 21px 21px 0 0"
+              />
+            </div>
           </div>
-        </div>
+        </a>
 
         <div class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3">
           <div
@@ -228,7 +239,13 @@
             <div
               class="bg-body-tertiary shadow-sm mx-auto"
               style="width: 300px; height: 300px; border-radius: 21px 21px 0 0"
-            ></div>
+            >
+              <img
+                src="https://i.pinimg.com/originals/f6/03/62/f60362956cf07502b414be6466ea49fd.jpg"
+                alt="Descripción de la imagen"
+                style="width: 100%; height: 300px; border-radius: 21px 21px 0 0"
+              />
+            </div>
           </div>
         </div>
 
@@ -244,7 +261,7 @@
             </div>
             <div
               class="bg-body-tertiary shadow-sm mx-auto"
-              style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+              style="width: 100%; height: 300px; border-radius: 21px 21px 0 0"
             >
               <img
                 src="https://www.prosegur.com/dam/jcr:d8445cee-7009-4a37-913f-2d007e25fc78/FOTOAULASINNOVACION.png"
@@ -254,21 +271,6 @@
             </div>
           </div>
         </a>
-
-        <div class="d-md-flex flex-fill flex-md-equal w-100 my-md-3 ps-md-3">
-          <div
-            class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
-          >
-            <div class="my-3 py-3">
-              <h2 class="display-5">Espacios Verdes</h2>
-              <p class="lead">And an even wittier subheading.</p>
-            </div>
-            <div
-              class="bg-body-tertiary shadow-sm mx-auto"
-              style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
-            ></div>
-          </div>
-        </div>
       </div>
     </main>
 

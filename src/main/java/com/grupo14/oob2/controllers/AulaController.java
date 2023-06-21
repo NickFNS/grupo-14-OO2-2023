@@ -124,7 +124,7 @@ public class AulaController {
             dispositoSector.add(response);
             sector.setDispositivos(dispositoSector);
             sectorRepository.save(sector);
-            return new RedirectView("/"+ViewRouteHelper.AULA_DASHBOARD);
+            return new RedirectView("/aula/dashboard/tableAbm");
         }
     }
 
