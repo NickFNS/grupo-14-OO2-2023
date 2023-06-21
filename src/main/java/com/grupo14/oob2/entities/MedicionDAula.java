@@ -15,9 +15,17 @@ import javax.persistence.Table;
 @Setter
 @Getter
 @Table(name = "medicion_daula")
-public class MedicionDAula extends Medicion{
+public class MedicionDAula extends Medicion {
 
-    @Column(name = "occupied")
-    protected boolean occupied;
+	@Column(name = "occupied")
+	protected boolean occupied;
+
+	public boolean isOccupied() {
+		return occupied;
+	}
+
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
 
 }
