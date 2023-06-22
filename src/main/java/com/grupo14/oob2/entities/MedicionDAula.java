@@ -27,15 +27,5 @@ public class MedicionDAula extends Medicion {
 	public void setOccupied(boolean occupied) {
 		this.occupied = occupied;
 	}
-
-	public boolean isOccupied() {
-		return occupied;
-	}
-
-	public void setOccupied(boolean occupied) {
-		this.occupied = occupied;
-	}
     
-    
-
 }

@@ -11,9 +11,6 @@ public class ViewRouteHelper {
 	public final static String USER_LOGIN = "login/index";
 	public final static String USER_LOGOUT = "login/logout";
 
-	/**** Redirects ****/
-	public final static String ROUTE = "/index";
-
 	// AULA
 	public final static String AULA_DASHBOARD = "aula/dashboard";
 
