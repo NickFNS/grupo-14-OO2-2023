@@ -77,9 +77,7 @@
         <p>Name: <input type="text" th:field="*{name}" /></p>
 
         <p>Places:</p>
-        <div th:each="place, iter : *{places}">
-          <input type="number" th:field="*{places[__${iter.index}__]}" />
-        </div>
+        <input type="number" th:field="*{placeNumber}" />
         <input type="submit" value="Create Estacionamiento" />
       </form>
     </div>

@@ -24,21 +24,7 @@ import java.util.List;
 @Table(name = "estacionamiento")
 public class Estacionamiento extends Dispositivo {
 
-	// TODO: Verificar por que no me crea el set si no estan los tags.
-	// No creo necesario tener que crear un Model, porque solo hay un atributo para
-	// mostrar de Estacionamiento
-	@ElementCollection
-	@CollectionTable(name = "estacionamiento", joinColumns = @JoinColumn(name = "id_dispositivo"))
-	@Column(name = "places")
-	private List<Integer> places = new ArrayList<Integer>();
-
-	// TODO: Revisar que no funciona el Lombok
-	public List<Integer> getPlaces() {
-		return places;
-	}
-
-	public void setPlaces(List<Integer> places) {
-		this.places = places;
-	}
+	@Column(name = "place_number")
+	private int placeNumber;
 
 }

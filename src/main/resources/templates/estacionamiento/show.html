@@ -108,6 +108,7 @@
             <th>IdDispositivo</th>
             <th>Nombre</th>
             <th>Fecha y Hora</th>
+            <th>Place number</th>
             <th>Medicion</th>
             <th>Dar de baja</th>
           </tr>
@@ -119,6 +120,7 @@
               <td th:text="${estacionamiento.idDispositivo}"></td>
               <td th:text="${estacionamiento.name}"></td>
               <td th:text="${estacionamiento.created_at}"></td>
+              <td th:text="${estacionamiento.placeNumber}"></td>
               <td>
                 <form
                   th:action="@{/medicionEstacionamiento/create}"

@@ -77,6 +77,7 @@ public class AulaController {
     @GetMapping("/dashboard/abm/aulaUpdate/{id}")
     public String aulaUpdate(@PathVariable("id") int id,Model model) {
         model.addAttribute("daula", new DispositivoCreate());
+        model.addAttribute("daulaFing", dAulaService.findByID(id));
         model.addAttribute("sectores", sectorRepository.findAll());
         return ViewRouteHelper.AULA_ABM_EDIT;
     }

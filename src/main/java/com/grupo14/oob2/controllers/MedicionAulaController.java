@@ -27,7 +27,7 @@ public class MedicionAulaController {
     private EventoService eventoService;
 
     @GetMapping("/create/{id}")
-    public String crearMedicionAula(@PathVariable("id") int dAulaId) {
+    public String crearMedicionAula(@PathVariable("id") int dAulaId) throws Exception {
         DAula daula = dAulaService.findByID(dAulaId);
 
         if (daula != null) {
@@ -51,10 +51,21 @@ public class MedicionAulaController {
             Evento nuevoEvento = new Evento();
             if (nuevoEstado) {
                 nuevoEvento.setDescription("Aula Ocupada");
+                daula.setInUse(true);
+                daula.setComputersOn(true);
+                daula.setLightsOn(true);
+                daula.setOpenDoor(true);
+                daula.setOpenWindows(true);
             } else {
                 nuevoEvento.setDescription("Aula Desocupada");
+                daula.setInUse(false);
+                daula.setComputersOn(false);
+                daula.setLightsOn(false);
+                daula.setOpenDoor(false);
+                daula.setOpenWindows(false);
             }
 
+            dAulaService.update(daula);
             nuevoEvento.setEnabled(true);
             nuevoEvento.setDateTime(LocalDateTime.now());
             nuevoEvento.setDispositivo(daula);

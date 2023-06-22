@@ -17,19 +17,9 @@ import lombok.Setter;
 @Table(name = "medicion_estacionamiento")
 public class MedicionEstacionamiento extends Medicion {
 
-	@Column(name = "place_number")
-	private int place_number;
-
 	@Column(name = "occupied")
 	private boolean occupied;
 
-	public int getPlace_number() {
-		return place_number;
-	}
-
-	public void setPlace_number(int place_number) {
-		this.place_number = place_number;
-	}
 
 	public boolean isOccupied() {
 		return occupied;

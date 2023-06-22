@@ -87,8 +87,6 @@ public class EstacionamientoController {
 		ModelAndView mV = new ModelAndView(ViewRouteHelper.FORM_NEW_ESTACIONAMIENTO);
 		Estacionamiento estacionamiento = new Estacionamiento();
 
-		estacionamiento.setPlaces(new ArrayList<Integer>());
-
 		mV.addObject("estacionamiento", estacionamiento);
 		return mV;
 	}
