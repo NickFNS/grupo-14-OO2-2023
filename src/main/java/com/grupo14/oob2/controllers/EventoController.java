@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -100,7 +102,7 @@ public class EventoController {
 		}
 
 		model.addAttribute("eventos", eventosAula);
-		return ViewRouteHelper.SHOW_EVENTOS_ESTACIONAMIENTO;
+		return ViewRouteHelper.SHOW_EVENTOS_DAULA;
 	}
 
 	@GetMapping("/eventosBanios")
@@ -146,6 +148,8 @@ public class EventoController {
 
 	@GetMapping("/todosLosEventos")
 	public String mostrarTodosLosEventos(Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("role", user.getAuthorities().toString());
 		List<Evento> eventos = eventoService.getAll();
 		model.addAttribute("eventos", eventos);
 		return ViewRouteHelper.SHOW_EVENTOS;

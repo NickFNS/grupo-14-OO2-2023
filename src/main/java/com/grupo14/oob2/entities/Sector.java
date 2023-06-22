@@ -78,5 +78,7 @@ public class Sector {
 	public void setDispositivos(Set<Dispositivo> dispositivos) {
 		this.dispositivos = dispositivos;
 	}
+	
+	
 
 }

@@ -1,0 +1,78 @@
+
+.bodyContainer {
+	background-color: #1a1a1a;
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+	font-family: "Roboto Mono", monospace;
+	color: #fff;
+  }
+
+  .bodyContainer2 {
+	background-color: #1a1a1a;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	font-family: "Roboto Mono", monospace;
+	color: #fff;
+  }
+
+  
+.body1 {
+	background-color: #1a1a1a;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Roboto Mono", monospace;
+	color: #fff;
+	height: 90px;
+  }
+
+  .container {
+	max-width: 800px;
+	text-align: center;
+  }
+
+  .body2{
+	margin-top: 20px;
+  }
+
+  h2 {
+	
+	font-size: 32px;
+	margin-bottom: 20px;
+  }
+
+  table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 60px;
+  }
+
+  th,
+  td {
+	padding: 10px;
+	text-align: left;
+  }
+
+  th {
+	background-color: #333;
+	color: #fff;
+  }
+
+  tr:nth-child(even) {
+	background-color: #555;
+  }
+
+
+  input,
+  select {
+	background-color: #fff;
+	color: #111;
+	border-radius: 5px;
+  }
+
+ 

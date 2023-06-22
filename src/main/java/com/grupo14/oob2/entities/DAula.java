@@ -37,7 +37,6 @@ public class DAula extends Dispositivo {
 	protected boolean inUse;
 
 	public DAula() {
-		super();
 	}
 
 	public DAula(boolean openDoor, boolean lightsOn, boolean computersOn, boolean openWindows, boolean inUse) {
