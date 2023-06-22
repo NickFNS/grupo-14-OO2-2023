@@ -29,6 +29,8 @@ public class EventoController {
 	public String mostrarEventosEstacionamientos(@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
 			@RequestParam(value = "description", required = false) String description, Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("role", user.getAuthorities().toString());
 
 		String type = "Estacionamiento";
 		List<Evento> eventosEstacionamientos;
@@ -70,6 +72,8 @@ public class EventoController {
 	public String mostrarEventosAula(@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
 			@RequestParam(value = "description", required = false) String description, Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("role", user.getAuthorities().toString());
 
 		String type = "Aula";
 		List<Evento> eventosAula;
@@ -109,6 +113,8 @@ public class EventoController {
 	public String mostrarEventosBanios(@RequestParam(value = "date", required = false) String date,
 			@RequestParam(value = "idDispositivo", required = false) Integer idDispositivo,
 			@RequestParam(value = "description", required = false) String description, Model model) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("role", user.getAuthorities().toString());
 
 		String type = "Banio";
 		List<Evento> eventosBanios;

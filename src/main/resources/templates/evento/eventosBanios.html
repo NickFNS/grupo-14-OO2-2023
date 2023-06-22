@@ -1,115 +1,139 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Eventos de Baños</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/css/estilosEstacionamiento.css}"
+    />
 
-<head>
-	<title>Eventos de Baños</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/product/"
+    />
+    <link
+      href="/docs/5.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .navbar {
+        background-color: #343a40;
+      }
 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/estilosEstacionamiento.css}" />
+      .nav-link {
+        color: #fff;
+      }
 
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/product/" />
-	<link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+      .nav-link:hover {
+        color: #adb5bd;
+      }
+    </style>
+  </head>
 
-	<style>
-		.navbar {
-			background-color: #343a40;
-		}
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Smart City</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/index" class="btn text-white">Volver a Index</a>
+            </li>
 
-		.nav-link {
-			color: #fff;
-		}
+            <li class="nav-item">
+              <a href="/evento/eventosEstacionamientos" class="btn text-white"
+                >Eventos de Estacionamientos</a
+              >
+            </li>
 
-		.nav-link:hover {
-			color: #adb5bd;
-		}
-	</style>
+            <li class="nav-item">
+              <a href="/evento/eventosAula" class="btn text-white"
+                >Eventos de Aula</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="/evento/todosLosEventos" class="btn text-white"
+                >Todos los eventos</a
+              >
+            </li>
+            <a type="button" class="btn btn-danger" href="/logout">Logout</a>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="body1">
+      <div class="body2">
+        <h1>Eventos de Banios</h1>
+      </div>
+      <div>
+        <form action="eventosBanios" method="GET">
+          <label for="date">Fecha y Hora:</label>
+          <input type="date" id="date" name="date" value="${param.dateTime}" />
 
-</head>
+          <label for="idDispositivo">ID Dispositivo:</label>
+          <input
+            type="number"
+            id="idDispositivo"
+            name="idDispositivo"
+            value="${param.idDispositivo}"
+          />
 
-<body>
+          <label for="description">Descripción:</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            th:value="${param.description}"
+          />
 
-	<nav class="navbar navbar-expand-lg navbar-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">Smart City</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
-						<a href="/index" class="btn text-white">Volver a Index</a>
-					</li>
+          <input type="submit" class="btn btn-light" value="Buscar" />
+        </form>
+      </div>
+    </div>
+    <div class="bodyContainer">
+      <div class="container">
+        <table class="table_content">
+          <thead>
+            <tr>
+              <th>ID Evento</th>
+              <th>Dispositivo ID</th>
+              <th>Dispositivo Nombre</th>
+              <th>Descripción</th>
+              <th>Fecha y Hora</th>
+            </tr>
+          </thead>
 
-					<li class="nav-item">
-						<a href="/evento/eventosBanios" class="btn text-white" th:if="${role != '[audit]'}">Eventos de
-							Banios</a>
-					</li>
-
-					<li class="nav-item">
-						<a href="/evento/eventosAula" class="btn text-white" th:if="${role != '[audit]'}">Eventos de
-							Aula</a>
-					</li>
-					<li class="nav-item">
-						<a href="/evento/todosLosEventos" class="btn text-white" th:if="${role != '[audit]'}">Todos los
-							eventos</a>
-					</li>
-					<a type="button" class="btn btn-danger" href="/logout">Logout</a>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<div>
-
-		<div class="body1">
-			<div class="body2">
-				<h1>Eventos de Banios</h1>
-			</div>
-			<div>
-
-				<form action="eventosBanios" method="GET">
-					<label for="date">Fecha y Hora:</label>
-					<input type="date" id="date" name="date" value="${param.dateTime}">
-
-					<label for="idDispositivo">ID Dispositivo:</label>
-					<input type="number" id="idDispositivo" name="idDispositivo" value="${param.idDispositivo}">
-
-					<label for="description">Descripción:</label>
-					<input type="text" id="description" name="description" th:value="${param.description}">
-
-					<input type="submit" class="btn btn-light" value="Buscar" />
-				</form>
-
-				<table class="table_content">
-					<thead>
-						<tr>
-							<th>ID Evento</th>
-							<th>Dispositivo ID</th>
-							<th>Dispositivo Nombre</th>
-							<th>Descripción</th>
-							<th>Fecha y Hora</th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr th:each="evento : ${eventos}">
-							<td th:text="${evento.idEvento}"></td>
-							<td th:text="${evento.dispositivo.idDispositivo}"></td>
-							<td th:text="${evento.dispositivo.name}"></td>
-							<td th:text="${evento.description}"></td>
-							<td th:text="${evento.dateTime}"></td>
-						</tr>
-					</tbody>
-				</table>
-
-				<a href="/banio/show" class="btn btn-primary">Baños</a>
-
-				<a href="/evento/todosLosEventos" class="btn btn-primary">Eventos</a>
-			</div>
-
-</body>
-
+          <tbody>
+            <tr th:each="evento : ${eventos}">
+              <td th:text="${evento.idEvento}"></td>
+              <td th:text="${evento.dispositivo.idDispositivo}"></td>
+              <td th:text="${evento.dispositivo.name}"></td>
+              <td th:text="${evento.description}"></td>
+              <td th:text="${evento.dateTime}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>
