@@ -24,7 +24,7 @@
     />
     <style>
       /* Estilos generales */
-      body {
+      .body {
         background-color: #1a1a1a;
         display: flex;
         justify-content: center;
@@ -78,21 +78,63 @@
         font-size: 16px;
         margin: 0;
       }
+      .navbar {
+        background-color: #343a40;
+      }
+
+      .nav-link {
+        color: #fff;
+      }
+
+      .nav-link:hover {
+        color: #adb5bd;
+      }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h2 th:text="'Lista de dispositivos - Sector '+${sector.name}"></h2>
-      <div class="card-list">
-        <div th:each="daula : ${Daulas}" class="card">
-          <h2 th:text="${daula.name}"></h2>
-          <p th:text="'Type: '+${daula.type}"></p>
-          <p th:text="'Enabled: '+${daula.enabled}"></p>
-          <p th:text="'Aula en uso: '+${daula.inUse}"></p>
-          <p th:text="'Puerta Abierta: '+${daula.openDoor}"></p>
-          <p th:text="'Luces Prendidas: '+${daula.lightsOn}"></p>
-          <p th:text="'Computadoras prendidas: '+${daula.computersOn}"></p>
-          <p th:text="'Cortinas levantadas: '+${daula.openWindows}"></p>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Aulas</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/aula/dashboard" class="btn text-white">Dashboard </a>
+            </li>
+            <li class="nav-item">
+              <a href="/index" class="btn text-white">Volver a Index</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-danger">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="body">
+      <div class="container">
+        <h2 th:text="'Lista de dispositivos - Sector '+${sector.name}"></h2>
+        <div class="card-list">
+          <div th:each="daula : ${Daulas}" class="card">
+            <h2 th:text="${daula.name}"></h2>
+            <p th:text="'Type: '+${daula.type}"></p>
+            <p th:text="'Enabled: '+${daula.enabled}"></p>
+            <p th:text="'Aula en uso: '+${daula.inUse}"></p>
+            <p th:text="'Puerta Abierta: '+${daula.openDoor}"></p>
+            <p th:text="'Luces Prendidas: '+${daula.lightsOn}"></p>
+            <p th:text="'Computadoras prendidas: '+${daula.computersOn}"></p>
+            <p th:text="'Cortinas levantadas: '+${daula.openWindows}"></p>
+          </div>
         </div>
       </div>
     </div>
