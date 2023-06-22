@@ -27,4 +27,14 @@ public class Estacionamiento extends Dispositivo {
 	@Column(name = "place_number")
 	private int placeNumber;
 
+	public int getPlaceNumber() {
+		return placeNumber;
+	}
+
+	public void setPlaceNumber(int placeNumber) {
+		this.placeNumber = placeNumber;
+	}
+
+	
+	
 }
