@@ -25,13 +25,14 @@ public interface MedicionRepository extends JpaRepository<Medicion, Integer> {
 
 	@Query("SELECT m FROM Medicion m WHERE DATE(m.registryDateTime) = (:date)")
 	List<Medicion> findMedicionByFecha(@Param("date") LocalDate date);
-	
+
 	// ESTACIONAMIENTOS
 	@Query("SELECT m FROM MedicionEstacionamiento m ")
 	List<MedicionEstacionamiento> getAllMedicionEstacionamiento();
-	
+
 	@Query("SELECT m FROM MedicionEstacionamiento m WHERE m.dispositivo = :estacionamiento ORDER BY m.registryDateTime DESC")
-	List<MedicionEstacionamiento> findUltimaMedicionEstacionamiento(@Param("estacionamiento") Estacionamiento estacionamiento);
+	List<MedicionEstacionamiento> findUltimaMedicionEstacionamiento(
+			@Param("estacionamiento") Estacionamiento estacionamiento);
 
 	// Daula
 	@Query("SELECT m FROM MedicionDAula m ")
@@ -39,5 +40,12 @@ public interface MedicionRepository extends JpaRepository<Medicion, Integer> {
 
 	@Query("SELECT m FROM MedicionDAula m WHERE m.dispositivo = :dAula ORDER BY m.registryDateTime DESC")
 	List<MedicionDAula> findUltimaMedicionDAula(@Param("dAula") DAula dAula);
+
+	// BAÑOS
+	@Query("SELECT b FROM MedicionBanio b ")
+	List<MedicionBanio> getAllMedicionBanio();
+
+	@Query("SELECT b FROM MedicionBanio b WHERE b.dispositivo = :banio ORDER BY b.registryDateTime DESC")
+	List<MedicionBanio> findUltimaMedicionBanio(@Param("banio") Banio banio);
 
 }

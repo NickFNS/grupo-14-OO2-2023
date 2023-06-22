@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grupo14.oob2.entities.Banio;
 import com.grupo14.oob2.entities.Dispositivo;
 import com.grupo14.oob2.entities.Estacionamiento;
 import com.grupo14.oob2.repositories.DispositivoRepository;
@@ -24,7 +25,6 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.getById(idDispositivo);
 	}
 
-	// A revisar
 	@Override
 	public List<Dispositivo> findByTipoDesc(String tipo) {
 		return null;
@@ -35,33 +35,51 @@ public class DispositivoServiceImpl implements DispositivoService {
 		return dispositivoRepository.findAll();
 	}
 
-	// TODO: Verificar que funcione bien el agregar.
 	public Dispositivo insertOrUpdateEstacionamiento(Dispositivo d) {
 		if (d instanceof Estacionamiento) {
 			Estacionamiento estacionamiento = (Estacionamiento) d;
-//			if (estacionamiento.getIdDispositivo() != 0) {
-//				// El estacionamiento tiene un ID distinto de cero, lo que indica que ya existe
-//				// en la base de datos
-//				Optional<Dispositivo> existingDispositivo = dispositivoRepository
-//						.findById(estacionamiento.getIdDispositivo());
-//				if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Estacionamiento) {
-//					// Actualizar el estacionamiento existente con los valores del estacionamiento
-//					// pasado como parámetro
-//					Estacionamiento existingEstacionamiento = (Estacionamiento) existingDispositivo.get();
-//					existingEstacionamiento.setPlaces(estacionamiento.getPlaces());
-//					// Actualiza otros campos si es necesario
-//					// ...
-//					// Guardar el estacionamiento actualizado en la base de datos
-//					Dispositivo savedDispositivo = dispositivoRepository.save(existingEstacionamiento);
-//					return savedDispositivo;
-//				}
-//			}
+//            if (estacionamiento.getIdDispositivo() != 0) {
+//                // El estacionamiento tiene un ID distinto de cero, lo que indica que ya existe
+//                // en la base de datos
+//                Optional<Dispositivo> existingDispositivo = dispositivoRepository
+//                        .findById(estacionamiento.getIdDispositivo());
+//                if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Estacionamiento) {
+//                    // Actualizar el estacionamiento existente con los valores del estacionamiento
+//                    // pasado como parámetro
+//                    Estacionamiento existingEstacionamiento = (Estacionamiento) existingDispositivo.get();
+//                    existingEstacionamiento.setPlaces(estacionamiento.getPlaces());
+//                    // Actualiza otros campos si es necesario
+//                    // ...
+//                    // Guardar el estacionamiento actualizado en la base de datos
+//                    Dispositivo savedDispositivo = dispositivoRepository.save(existingEstacionamiento);
+//                    return savedDispositivo;
+//                }
+//            }
 			List<Estacionamiento> estacionamientos = dispositivoRepository.findAllEstacionamientos();
 			if (estacionamientos.contains(estacionamiento)) {
 				estacionamiento.setUpdated_at(LocalDateTime.now());
 			}
 		}
 		// El estacionamiento no existe en la base de datos, crear uno nuevo
+		Dispositivo newDispositivo = dispositivoRepository.save(d);
+		return newDispositivo;
+	}
+
+	@Override
+	public Dispositivo insertOrUpdateBanio(Dispositivo d) {
+		if (d instanceof Banio) {
+			Banio Banio = (Banio) d;
+			/*
+			if (Banio.getIdDispositivo() != 0) {
+				Optional<Dispositivo> existingDispositivo = dispositivoRepository.findById(Banio.getIdDispositivo());
+				if (existingDispositivo.isPresent() && existingDispositivo.get() instanceof Banio) {
+					Banio existingBanio = (Banio) existingDispositivo.get();
+					existingBanio.setBathroom_number(Banio.getBathroom_number());
+					Dispositivo savedDispositivo = dispositivoRepository.save(existingBanio);
+					return savedDispositivo;
+				}
+			}*/
+		}
 		Dispositivo newDispositivo = dispositivoRepository.save(d);
 		return newDispositivo;
 	}
@@ -98,6 +116,33 @@ public class DispositivoServiceImpl implements DispositivoService {
 	@Override
 	public Estacionamiento findEstacionamientoByIdDispositivo(int idDispositivo) {
 		return dispositivoRepository.findEstacionamientoByIdDispositivo(idDispositivo);
+	}
+
+	// Baños:
+
+	@Override
+	public List<Banio> findAllBanios() {
+		return dispositivoRepository.findAllBanios();
+	}
+
+	@Override
+	public List<Banio> findBaniosByDate(Date date) {
+		return dispositivoRepository.findBaniosByDate(date);
+	}
+
+	@Override
+	public List<Banio> findBaniosByName(String name) {
+		return dispositivoRepository.findBaniosByName(name);
+	}
+
+	@Override
+	public List<Banio> findBaniosByDateAndName(Date date, String name) {
+		return dispositivoRepository.findBaniosByDateAndName(date, name);
+	}
+
+	@Override
+	public Banio findBanioByIdDispositivo(int idDispositivo) {
+		return dispositivoRepository.findBanioByIdDispositivo(idDispositivo);
 	}
 
 }

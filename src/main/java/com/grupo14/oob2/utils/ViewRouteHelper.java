@@ -11,9 +11,6 @@ public class ViewRouteHelper {
 	public final static String USER_LOGIN = "login/index";
 	public final static String USER_LOGOUT = "login/logout";
 
-	/**** Redirects ****/
-	public final static String ROUTE = "/index";
-
 	// AULA
 	public final static String AULA_DASHBOARD = "aula/dashboard";
 
@@ -29,13 +26,26 @@ public class ViewRouteHelper {
 
 	public final static String AULA_DASHBOARD_SECTORES_DAULA = "aula/dAulabySectores";
 
+	// Baños
+    public final static String SHOW_BANIOS = "/banio/show";
+	public final static String FORM_NEW_BANIO = "/banio/newBanioForm";
+
 	/// Estacionamiento
 	public final static String SHOW_ESTACIONAMIENTOS = "/estacionamiento/show";
 	public final static String FORM_NEW_ESTACIONAMIENTO = "/estacionamiento/newEstacionamientoForm";
 
 	/// Eventos:
+	// Eventos de Estacionamiento:
 	public final static String SHOW_EVENTOS = "/evento/allEventos";
 	public final static String SHOW_EVENTOS_ESTACIONAMIENTO = "/evento/eventosEstacionamientos";
+
+	// Eventos de Banio:
+	public final static String SHOW_EVENTOS_BANIO = "/evento/eventosBanios";
+
+    /**** Redirects ****/
+    public final static String ROUTE = "/index";
+    public final static String DEGREE_ROOT = "/degrees/";
+    public final static String PERSON_ROOT = "/person";
 
 	public final static String SHOW_EVENTOS_DAULA = "/evento/eventosDAula";
 }

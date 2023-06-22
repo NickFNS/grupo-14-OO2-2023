@@ -71,5 +71,17 @@ public class MedicionServiceImpl implements MedicionService {
 	public List<MedicionDAula> getUltimaMedicionDAulao(DAula daula) {
 		return medicionRepository.findUltimaMedicionDAula(daula);
 	}
+	
+	// BAÑO
+	
+	@Override
+	public List<MedicionBanio> getAllMedicionBanio() {
+		return medicionRepository.getAllMedicionBanio();
+	}
+
+	@Override
+	public List<MedicionBanio> getUltimaMedicionBanio(Banio banio) {
+		return medicionRepository.findUltimaMedicionBanio(banio);
+	}
 
 }

@@ -41,14 +41,10 @@ public abstract class Dispositivo {
 	@Column(name = "updated_at")
 	@UpdateTimestamp
 	protected LocalDateTime updated_at;
-
-	//ManyToOne()
-	//protected Sector sector();
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "dispositivo")
 	protected Set<Evento> eventos = new HashSet<Evento>();
 
-	// TODO: Revisar que no funciona el Lombok
 	public int getIdDispositivo() {
 		return idDispositivo;
 	}
@@ -104,5 +100,4 @@ public abstract class Dispositivo {
 	public void setEventos(Set<Evento> eventos) {
 		this.eventos = eventos;
 	}
-
 }
