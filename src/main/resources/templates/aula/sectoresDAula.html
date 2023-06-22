@@ -275,6 +275,19 @@
         scrollbar-color: #555 #f5f5f5; /* Color del thumb al pasar el cursor sobre él */
       }
 
+      a {
+        color: white;
+        text-decoration-color: #9336b4;
+      }
+
+      a:hover {
+        color: white;
+      }
+
+      a:active {
+        color: white;
+      }
+
       @media screen and (max-width: 768px) {
         .container {
           flex-direction: column;
@@ -310,8 +323,13 @@
             th:onmouseover="'iluminarSector(' + ${sector.idSector} + ')'"
             th:onmouseout="'apagarSector(' + ${sector.idSector} + ')'"
             th:href="@{sectores/{id}(id=${sector.idSector})}"
-            th:text="${sector.idSector + ' - ' + sector.name}"
-          ></li>
+          >
+            <a
+              class="textLi"
+              th:text="${sector.idSector + ' - ' + sector.name}"
+              th:href="@{sectores/{id}(id=${sector.idSector})}"
+            ></a>
+          </li>
         </ul>
       </div>
       <div class="mapa">
